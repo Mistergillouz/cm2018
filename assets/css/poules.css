@@ -1,0 +1,22 @@
+
+.poule-groupes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.poule-group {
+    padding: 10px;
+    text-align: center;
+}
+
+.poule-title {
+    background-color: #0b5b76;
+    line-height: 28px;
+    border-radius: 7px 7px 0px 0;
+    padding: 5px 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.poule-pays-name {
+}
