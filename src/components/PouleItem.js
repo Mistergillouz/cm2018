@@ -6,10 +6,10 @@ export default class PouleItem extends React.Component {
     render () {
         let id = this.props.id
         return (
-            <div className="poule-group-item" onClick={ () => this.onClick() }>
+            <div className="poule-group-item">
                 <img className="poule-pays-image" src={ GameHelper.getImagePath(id) }/>
                 <div className="poule-pays-name">{ GameHelper.getCountry(id) }</div>
-                <div className="poule-pays-order">
+                <div className="poule-pays-order"  onClick={ () => this.onClick() }>
                     { this.generateVoteResult() }
                 </div>
             </div>
