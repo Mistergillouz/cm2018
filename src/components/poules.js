@@ -1,5 +1,6 @@
 import React from 'react'
 import GameHelper from '../data/GameHelper'
+import PouleItem from './PouleItem'
 import '../../assets/css/poules.css'
 
 export default class Poules extends React.Component {
@@ -13,31 +14,30 @@ export default class Poules extends React.Component {
         )
     }
 
-    generatePouleMembers (poule) {
-        let html = []
-        poule.forEach(id => {
-            html.push(<div className="poule-pays-name">{ GameHelper.getCountry(id) }</div>)
-        })
+    onItemClicked (groupKey, id) {
 
-        return html;
+        GameHelper.setGroupBet(groupKey, id)
+        this.forceUpdate()
     }
-
-    generateGroup (groupKey) {
-        let poule = GameHelper.getPoule(groupKey)
-        return (
-            <div className="poule-group">
-                <div className="poule-title">GROUPE {groupKey}</div>
-                { this.generatePouleMembers(poule) }
-            </div>
-        );
+    
+    generateGroups () {
+        let groups = GameHelper.getGroups()
+        return this.generateGroupRow(Object.keys(groups))
     }
-
+    
     generateGroupRow (groupKeys) {
         return (<div className="poule-groupes">{ groupKeys.map(id => this.generateGroup(id)) }</div>)
     }
 
-    generateGroups () {
-        let poules = GameHelper.getPoules()
-        return this.generateGroupRow(Object.keys(poules))
+    generateGroup (groupKey) {
+        const poule = GameHelper.getGroup(groupKey), groupBets = GameHelper.getGroupBets(groupKey)
+        return (
+            <div className="poule-group">
+                <div className="poule-title">GROUPE <strong>{groupKey}</strong></div>
+                { poule.map(id => <PouleItem id={ id } order={ groupBets.indexOf(id) } onItemClicked={ (e) => this.onItemClicked(groupKey, e) }/>) }
+            </div>
+        );
     }
+
+
 }
