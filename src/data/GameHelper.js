@@ -1,11 +1,26 @@
+import axios from 'axios'
 import * as GAMEDATAS from './data.json'
 
 class GameHelper {
    
     constructor () {
         this.groupBets = {}
+        this.baseUrl = null
     }
     
+    setBaseUrl (baseUrl) {
+        this.baseUrl = baseUrl
+    }
+
+    setUserName (userName) {
+        this.userName = userName
+    }
+
+    async logon (userName) {
+        let result = await axios.get(this.baseUrl + '/logon/' + this.userName)
+        return result
+    }
+
     setGroupBet (groupKey, countryId) {
         let groupBets = this.getGroupBets(groupKey)
         let index = groupBets.indexOf(countryId)
