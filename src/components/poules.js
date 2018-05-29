@@ -8,14 +8,23 @@ export default class Poules extends React.Component {
     render () {
         return (
             <div>
-                COUPE DU MONDE 2018: Composition des groupes
+                <div className="cmTitle">
+                    <span className="cmSubtitle">Pari sur les phases de qualifications</span>
+                    <button className="cmButton" onClick={ () => this.onSubmit() }>SUBMIT</button>
+                </div>
+
                 { this.generateGroups() }
             </div>
         )
     }
 
-    onItemClicked (groupKey, id) {
+    onSubmit () {
+        GameHelper.saveGroupBets().then(result => console.log('Submit: ok')).catch(error => {
+            alert(error.response.statusText + '\n' + error.response.data)
+        })
+    }
 
+    onItemClicked (groupKey, id) {
         GameHelper.setGroupBet(groupKey, id)
         this.forceUpdate()
     }

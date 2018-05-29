@@ -1,8 +1,1 @@
-{
-    "users": {
-        "Gillouz": {},
-        "ColClark": {},
-        "Steph": {}
-    },
-    "step": "groups"
-}
+{"users":{"Gillouz":{"groupBets":{"A":["RUS","URU","EGY","ARA"],"B":["POR","ESP","IRA","MAR"],"C":["FRA","PER","DAN","AUS"],"D":[],"E":[],"F":[],"G":[],"H":[]}},"ColClark":{},"Steph":{}},"stage":"poules"}

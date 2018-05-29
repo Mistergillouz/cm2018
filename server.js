@@ -15,20 +15,21 @@ var allowCrossDomain = function(req, res, next) {
 }
 app.use(allowCrossDomain);
 
-let serverDatas = JSON.parse(fs.readFileSync('serverdatas.json', 'utf8'))
+const DATA_FILE = 'serverdatas.json'
+let serverDatas = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))
 console.log(serverDatas)
 
 app.get('/users', function (req, res) {
-   let users = Object.keys(serverDatas.users)
-   res.end(JSON.stringify(users))
+    let users = Object.keys(serverDatas.users)
+    res.end(JSON.stringify(users))
 })
 
 app.get('/logon/:user', function (req, res) {
-    const userData = serverDatas.users[req.params.user]
-    if (userData) {
+    const userDatas = serverDatas.users[req.params.user]
+    if (userDatas) {
         const result = {
-            step: serverDatas.step,
-            bets: userData
+            stage: serverDatas.step,
+            userDatas: userDatas
         }
         res.end(JSON.stringify(result))
     } else {
@@ -43,14 +44,23 @@ app.post('/groupbets/:user', function (req, res) {
         return
     }
 
-    res.sendStatus(200)
+    if (!req.body.groupBets) {
+        res.status(500).send('Cannot find groupBets attribute')
+        return
+    }
 
+    // userData.groupBets = req.body.groupBets
+    // res.sendStatus(200)
+    // writeServerDatas()
 })
 
 var server = app.listen(9001, function () {
-
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log("Example app listening at http://%s:%s", host, port)
+    var host = server.address().address
+    var port = server.address().port
+    console.log('Example app listening at http://%s:%s', host, port)
 })
+
+
+function writeServerDatas () {
+    fs.writeFileSync(DATA_FILE, JSON.stringify(serverDatas))
+}

@@ -2,7 +2,7 @@
 /*  GENERAL
 /*---------------------------------------------------------------------*/
 
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, img, b, u, i, ol, ul, li, form, label, table, tbody, tfoot, thead, tr, th, td, embed {
+html, body, div, span, p, pre, a, img, b, u, i, ol, ul, li, form, label, table, tbody, tfoot, thead, tr, th, td, embed {
   margin: 0;
   padding: 0;
   border: 0;

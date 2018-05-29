@@ -16,6 +16,7 @@
     "babel-core": "^6.26.0",
     "babel-env": "^2.4.1",
     "babel-loader": "^6.4.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
@@ -26,7 +27,8 @@
     "style-loader": "^0.16.1",
     "uglify-js-brunch": "^2.10.0",
     "url-loader": "^0.5.8",
-    "webpack": "^3.10.0",
+    "webpack": "^3.12.0",
+    "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^2.9.7"
   },
   "scripts": {

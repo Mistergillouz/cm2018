@@ -4,22 +4,38 @@ import * as GAMEDATAS from './data.json'
 class GameHelper {
    
     constructor () {
-        this.groupBets = {}
         this.baseUrl = null
+        this.userDatas = null
     }
     
     setBaseUrl (baseUrl) {
         this.baseUrl = baseUrl
     }
 
+    logon (userName) {
+        return new Promise((resolve, reject) => {
+            axios.get(this.baseUrl + '/logon/' + this.userName)
+                .then(result => {
+                    this.setUserData(result.data)
+                    resolve(result.data)
+                })
+                .catch(result => reject(result))
+        })
+    }
+
+    saveGroupBets () {
+        return axios.post(this.baseUrl + '/groupBets/' + this.userName, { groupBets: this.userDatas.groupBets })
+    }
+
+    setUserData (data) {
+        this.userDatas = data.userDatas
+        this.stage = data.stage
+    }
+
     setUserName (userName) {
         this.userName = userName
     }
 
-    async logon (userName) {
-        let result = await axios.get(this.baseUrl + '/logon/' + this.userName)
-        return result
-    }
 
     setGroupBet (groupKey, countryId) {
         let groupBets = this.getGroupBets(groupKey)
@@ -46,9 +62,13 @@ class GameHelper {
     }
 
     getGroupBets (id) {
-        let bets = this.groupBets[id]
+        if (!this.userDatas.groupBets) {
+            this.userDatas.groupBets = {}
+        }
+
+        let bets = this.userDatas.groupBets[id]
         if (!bets) {
-            bets = this.groupBets[id] = []
+            bets = this.userDatas.groupBets[id] = []
         }
         return bets
     }
