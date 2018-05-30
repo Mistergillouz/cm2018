@@ -1,0 +1,51 @@
+.cmLoginPage {
+    position: absolute;
+    background-color: #f5f2f0;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    width: 400px;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, 0);
+}
+
+.cmLoginButton {
+    border: 0;
+    padding: 0 10px;
+    display: block;
+    margin: 10px 0;
+    user-select: none;
+    transition: background-color 200ms ease;
+    -webkit-transition: background-color 200ms ease;
+    color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    background-color: rgb(43, 124, 185);
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 4px;
+    line-height: 2.5;
+  }
+
+
+  
+.cmLoginButton:hover {
+    background-color: rgb(92,172,233);
+  }
+
+  
+.cmInput {
+    display: block;
+    padding: 15px 0 15px 5px;
+    width: 97%;
+    border: 2px solid #F4F7F7;
+    background: #FCFCFC;
+    border-radius: 3px;
+    border: 1px solid #eeeeee;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    height: auto;
+  }

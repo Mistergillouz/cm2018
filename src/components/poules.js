@@ -7,7 +7,7 @@ export default class Poules extends React.Component {
 
     render () {
         return (
-            <div>
+            <div className="cmPoules">
                 <div className="cmTitle">
                     <span className="cmSubtitle">Pari sur les phases de qualifications</span>
                     <button className="cmButton" onClick={ () => this.onSubmit() }>SUBMIT</button>

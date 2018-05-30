@@ -1,3 +1,8 @@
+.cmPoules {
+    position: absolute;
+    width: 100%;
+    top: 5%;
+}
 
 .cmTitle {
     display: flex;
@@ -28,7 +33,8 @@
 
 .poule-group-item {
     display: flex;
-    padding-bottom: 0.2rem;
+    align-items: center;
+    padding: 0.2rem;
     font-size: 1rem;
     background-color: #f8f8f8;
 }
@@ -49,4 +55,9 @@
     margin-left: auto;
     padding-left: 1rem;
     cursor: pointer;
+}
+
+.poule-pays-image {
+    width: 1.5rem;
+    height: 1.5rem;
 }

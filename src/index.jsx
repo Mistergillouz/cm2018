@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import App from './components/App'
 
 import GameHelper from './data/GameHelper'
+import App from './components/App'
 
-GameHelper.setBaseUrl('http://' + document.location.hostname + ':9001')
-render(<App message='Gillouz'/>, document.getElementById('app-root'))
+GameHelper.init('http://' + document.location.hostname + ':9001')
+    .finally(result => render(<App isLogged={ GameHelper.isLogged() }/>, document.getElementById('app-root')))
+
+

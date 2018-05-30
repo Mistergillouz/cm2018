@@ -6,17 +6,23 @@ class GameHelper {
     constructor () {
         this.baseUrl = null
         this.userDatas = null
+    }
 
-        try {
-            let storedInfos = JSON.parse(localStorage.getItem('cm2018'))
-            this.logon(storedInfos.userName)
-        } catch (e) {}
+    init (baseUrl) {
+
+        this.baseUrl = baseUrl
+
+        return new Promise((resolve, reject) => {
+
+            try {
+                let storedInfos = JSON.parse(localStorage.getItem('cm2018'))
+                this.logon(storedInfos.userName).then(result => resolve(result)).catch(result => reject(result))
+            } catch (e) {
+                reject(e)
+            }
+        })
     }
     
-    setBaseUrl (baseUrl) {
-        this.baseUrl = baseUrl
-    }
-
     logon (userName) {
         return new Promise((resolve, reject) => {
             axios.get(this.baseUrl + '/logon/' + userName)
@@ -29,7 +35,12 @@ class GameHelper {
         })
     }
 
+    isLogged () {
+        return !!(this.userName && this.userDatas)
+    }
+
     saveGroupBets () {
+        this.buildMatches()
         return axios.post(this.baseUrl + '/groupBets/' + this.userName, { groupBets: this.userDatas.groupBets })
     }
 
@@ -58,7 +69,7 @@ class GameHelper {
     }
 
     getImagePath (id) {
-        return 'assets/images/' + id + '.gif';
+        return 'assets/images/' + id + '.png';
     }
     getCountry (id) {
         return GAMEDATAS.codePays[id]
@@ -87,7 +98,37 @@ class GameHelper {
         try {
             let datas = { userName: this.getUserName() }
             localStorage.setItem('cm2018', JSON.stringify(datas))
-        } catch (e) {}
+        } catch (e) {
+            // Do nothing
+        }
+    }
+
+    buildMatches () {
+
+        // 8eme
+        const table = [
+            [ 'A1B2', 'C1D2'],
+            [ 'B1A2', 'D1C2'],
+            [ 'E1F2', 'G1H2'],
+            [ 'F1E2', 'H1G2']
+        ]
+
+        let matches = []
+        table.forEach((entry, index) => {
+            entry.forEach(match => {
+                matches.push({
+                    index: index,
+                    teams: [ 
+                        this._teamCode(match.substr(0, 2)), 
+                        this._teamCode(match.substr(2))]
+                })
+            })
+        })
+    }
+
+    _teamCode (teamCode) {
+        let bet = this.getGroupBets(teamCode.charAt(0));
+        return bet[Number(teamCode.charAt(1)) - 1]
     }
 }
 
