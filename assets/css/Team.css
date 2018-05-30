@@ -1,23 +1,41 @@
 .cmTeam {
-    position: absolute;
-    top: 300px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 0.2rem;
+    font-size: 1rem;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.cmTeamGrayed {
+    opacity: 0.5;
+}
+
+.cmTeamTitle {
+    background-color: #0b5b76;
+    line-height: 28px;
+    border-radius: 7px 7px 0px 0;
+    padding: 5px 5px;
+    color: white;
 }
 
 .cmTeamImage {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
 }
 
 .cmTeamName {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     padding-left: 0.5rem;
     padding-right: 0.75rem;
 }
 
-.cmTeamCheckbox {
+.cmTeamSelectMark {
     font-size: 1.3rem;
-    cursor: pointer;
+    margin-left: auto;
+    padding-right: 0.25rem;
+}
+
+.cmTeamSelected {
+    color: green;
 }

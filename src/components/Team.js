@@ -1,5 +1,6 @@
 import React from 'react'
 import GameHelper from '../data/GameHelper'
+import '../../assets/css/Team.css'
 
 export default class Team extends React.Component {
 

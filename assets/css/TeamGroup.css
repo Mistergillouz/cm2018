@@ -1,0 +1,22 @@
+.cmTeamGroups {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cmTeamGroup {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+    width: 15rem;
+}
+
+.cmTeamGroupTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: rgb(92,172,233);
+    color: white;
+    line-height: 2rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+}

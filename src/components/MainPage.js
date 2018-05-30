@@ -1,31 +1,16 @@
 import React from 'react'
 import GameHelper from '../data/GameHelper'
+import Poules from './Poules'
+import Finales from './Finales'
 
 export default class MainPage extends React.Component {
 
     render () {
-        let id = this.props.id, order = this.props.order
-        let clazz = order === -1 ? 'cmTeamGrayed' : ''
         return (
-            <div className={ "cmTeam " + clazz } onClick={ () => this.onClick() }>
-                <img className="cmTeamImage" src={ GameHelper.getImagePath(id) }/>
-                <div className="cmTeamName">{ GameHelper.getCountry(id) }</div>
-                <div className="cmTeamSelectMark" >
-                    { this.generateVoteResult(order) }
-                </div>
+            <div>
+                <Poules/>
+                <Finales/>
             </div>
         )
-    }
-
-    generateVoteResult (order) {
-        if (order !== -1) {
-            return <i className="fas fa-check cmTeamSelected"></i>
-        }
-
-        return null
-    }
-
-    onClick () {
-        this.props.onItemClicked(this.props.id)
     }
 }

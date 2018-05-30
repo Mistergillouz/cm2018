@@ -2,7 +2,7 @@ import React from 'react'
 
 import TopBanner from './TopBanner'
 import LoginPage from './LoginPage'
-import Poules from './poules'
+import MainPage from './MainPage'
 import GameHelper from '../data/GameHelper'
 
 
@@ -34,10 +34,13 @@ export default class App extends React.Component {
     renderState () {
 
         if (this.state.showLoginPage || (!this.state.isLogged && !this.props.isLogged)) {
-            return <LoginPage userName={ GameHelper.getUserName() } onLogin={ (userName) => this.onLogin(userName) }/>
+            return <LoginPage 
+                userName={ GameHelper.getUserName() } 
+                onLogin={ (userName) => this.onLogin(userName) }
+            />
         }
 
-        return <Poules/>
+        return <MainPage/>
     }
 
     onLogin (userName) {

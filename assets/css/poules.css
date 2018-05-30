@@ -4,73 +4,26 @@
     top: 5%;
 }
 
-.cmTitle {
+.cmPouleTitle {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cmSubtitle {
+.cmPouleSubtitle {
     font-weight: bold;
     font-size: 1.5rem;
 }
 
-.cmPouleGroupes {
+.cmPouleGroups {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    padding: 10px;
-    text-align: center;
-}
-
-.cmPouleGroup {
-    padding: 10px;
-    text-align: center;
-    width: 13rem;
-}
-
-.cmTeam {
-    display: flex;
-    align-items: center;
-    padding: 0.2rem;
-    font-size: 1rem;
-    background-color: #f8f8f8;
-    cursor: pointer;
-}
-
-.cmTeamGrayed {
-    opacity: 0.5;
-}
-
-.cmPouleTitle {
-    background-color: #0b5b76;
-    line-height: 28px;
-    border-radius: 7px 7px 0px 0;
-    padding: 5px 5px;
-    color: white;
-}
-
-.cmTeamName {
-    padding-left: 5px;
-}
-
-.cmTeamSelectMark {
-    margin-left: auto;
-    padding-left: 1rem;
-    cursor: pointer;
-}
-
-.cmTeamImage {
-    width: 1.5rem;
-    height: 1.5rem;
+    justify-content: center;
+    padding-top: 2rem;
 }
 
 .cmSubmitButton {
     margin-left: 2rem;
-}
-
-.cmTeamSelected {
-    color: green;
-    font-size: 1.25rem;
-    padding-right: 0.25rem;
+    justify-content: center;
+    padding-top: 2rem;
 }
