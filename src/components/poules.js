@@ -7,11 +7,14 @@ import '../../assets/css/Poules.css'
 export default class Poules extends React.Component {
 
     render () {
+        const submitVisible = this.props.submitVisible
         return (
             <div className="cmPoules">
+            
                 <div className="cmPouleTitle">
                     <span className="cmPouleSubtitle">Pari sur les phases de qualifications</span>
-                    <button className="cmButton cmSubmitButton" onClick={ () => this.onSubmit() }><i className="fas fa-cloud-upload-alt cmRP05"></i>SUBMIT</button>
+                    { submitVisible ? 
+                        <button className="cmButton cmSubmitButton" onClick={ () => this.onSubmit() }><i className="fas fa-cloud-upload-alt cmRP05"></i>SUBMIT</button> : null }
                 </div>
 
                 { this.generateGroups() }
@@ -26,8 +29,7 @@ export default class Poules extends React.Component {
     }
 
     onTeamClicked (groupKey, id) {
-        GameHelper.setGroupBet(groupKey, id)
-        this.forceUpdate()
+        this.props.onTeamClicked(groupKey, id)
     }
     
     generateGroups () {

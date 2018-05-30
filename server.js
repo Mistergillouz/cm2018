@@ -29,7 +29,7 @@ app.get('/logon/:user', function (req, res) {
     if (userDatas) {
         let result = {
             userDatas: userDatas,
-            stage: serverDatas.stage,
+            readOnly: serverDatas.readOnly,
             qualification: serverDatas.qualification
         }
         res.end(JSON.stringify(result))
@@ -39,6 +39,12 @@ app.get('/logon/:user', function (req, res) {
 })
 
 app.post('/groupbets/:user', function (req, res) {
+
+    if (userDatas.readOnly) {
+        res.status(500).send('Update are now disabled')
+        return
+    }
+
     let userData = serverDatas.users[req.params.user]
     if (!userData) {
         res.sendStatus(404)

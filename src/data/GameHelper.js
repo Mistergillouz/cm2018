@@ -35,6 +35,9 @@ class GameHelper {
         })
     }
 
+    isSubmitAllowed () {
+        return this.isLogged() && !this.readOnly
+    }
     isLogged () {
         return !!(this.userName && this.userDatas)
     }
@@ -46,7 +49,7 @@ class GameHelper {
 
     setUserData (data) {
         this.userDatas = data.userDatas
-        this.stage = data.stage
+        this.readOnly = data.readOnly
         this.qualification = data.qualification
     }
 

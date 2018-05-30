@@ -1,7 +1,6 @@
 .cmTeam {
     display: flex;
     align-items: center;
-    padding: 0.2rem;
     font-size: 1rem;
     background-color: #f8f8f8;
     cursor: pointer;
@@ -20,18 +19,18 @@
 }
 
 .cmTeamImage {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .cmTeamName {
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding-left: 0.5rem;
     padding-right: 0.75rem;
 }
 
 .cmTeamSelectMark {
-    font-size: 1.3rem;
+    font-size: 1rem;
     margin-left: auto;
     padding-right: 0.25rem;
 }

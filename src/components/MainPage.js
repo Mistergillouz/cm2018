@@ -8,9 +8,15 @@ export default class MainPage extends React.Component {
     render () {
         return (
             <div>
-                <Poules/>
+                <Poules submitVisible={ GameHelper.isSubmitAllowed() } onTeamClicked={ (groupKey, id) => this.onTeamClicked(groupKey, id) }/>
                 <Finales/>
             </div>
         )
     }
+
+    onTeamClicked (groupKey, id) {
+        GameHelper.setGroupBet(groupKey, id)
+        this.setState({ refresh: true })
+    }
+
 }
