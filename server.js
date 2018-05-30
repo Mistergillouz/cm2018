@@ -49,9 +49,9 @@ app.post('/groupbets/:user', function (req, res) {
         return
     }
 
-    // userData.groupBets = req.body.groupBets
-    // res.sendStatus(200)
-    // writeServerDatas()
+    userData.groupBets = req.body.groupBets
+    res.sendStatus(200)
+    writeServerDatas()
 })
 
 var server = app.listen(9001, function () {
