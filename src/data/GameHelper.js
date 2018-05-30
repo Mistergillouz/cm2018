@@ -47,6 +47,7 @@ class GameHelper {
     setUserData (data) {
         this.userDatas = data.userDatas
         this.stage = data.stage
+        this.qualification = data.qualification
     }
 
     setUserName (userName) {
@@ -65,6 +66,10 @@ class GameHelper {
             groupBets.push(countryId)
         } else {
             groupBets.splice(index, 1)
+        }
+
+        if (groupBets.length > 2) {
+            groupBets.splice(0, groupBets.length - 2)
         }
     }
 
@@ -103,7 +108,7 @@ class GameHelper {
         }
     }
 
-    buildMatches () {
+    buildMatches (step) {
 
         // 8eme
         const table = [
@@ -131,7 +136,6 @@ class GameHelper {
         return bet[Number(teamCode.charAt(1)) - 1]
     }
 }
-
 
 // Singleton
 const GameHelperSingleton = new GameHelper();

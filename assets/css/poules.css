@@ -6,7 +6,8 @@
 
 .cmTitle {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
 }
 
 .cmSubtitle {
@@ -14,10 +15,7 @@
     font-size: 1.5rem;
 }
 
-.cmButton {
-}
-
-.poule-groupes {
+.cmPouleGroupes {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -25,21 +23,26 @@
     text-align: center;
 }
 
-.poule-group {
+.cmPouleGroup {
     padding: 10px;
     text-align: center;
     width: 13rem;
 }
 
-.poule-group-item {
+.cmTeam {
     display: flex;
     align-items: center;
     padding: 0.2rem;
     font-size: 1rem;
     background-color: #f8f8f8;
+    cursor: pointer;
 }
 
-.poule-title {
+.cmTeamGrayed {
+    opacity: 0.5;
+}
+
+.cmPouleTitle {
     background-color: #0b5b76;
     line-height: 28px;
     border-radius: 7px 7px 0px 0;
@@ -47,17 +50,27 @@
     color: white;
 }
 
-.poule-pays-name {
+.cmTeamName {
     padding-left: 5px;
 }
 
-.poule-pays-order {
+.cmTeamSelectMark {
     margin-left: auto;
     padding-left: 1rem;
     cursor: pointer;
 }
 
-.poule-pays-image {
+.cmTeamImage {
     width: 1.5rem;
     height: 1.5rem;
+}
+
+.cmSubmitButton {
+    margin-left: 2rem;
+}
+
+.cmTeamSelected {
+    color: green;
+    font-size: 1.25rem;
+    padding-right: 0.25rem;
 }

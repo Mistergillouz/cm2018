@@ -28,3 +28,29 @@ body {
   background-color: white;
   -webkit-tap-highlight-color: transparent;
 }
+
+.cmButton {
+  border: 0;
+  padding: 0 10px;
+  user-select: none;
+  transition: background-color 200ms ease;
+  -webkit-transition: background-color 200ms ease;
+  color: #FFF;
+  cursor: pointer;
+  display: inline-block;
+  background-color: rgb(43, 124, 185);
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 4px;
+  line-height: 2.5;
+}
+
+
+  
+.cmButton:hover {
+  background-color: rgb(92,172,233);
+}
+
+.cmRP05 {
+  padding-right: 0.5rem;
+}

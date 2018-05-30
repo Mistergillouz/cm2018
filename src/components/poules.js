@@ -1,7 +1,7 @@
 import React from 'react'
 import GameHelper from '../data/GameHelper'
-import PouleItem from './PouleItem'
-import '../../assets/css/poules.css'
+import Team from './Team'
+import '../../assets/css/Poules.css'
 
 export default class Poules extends React.Component {
 
@@ -10,7 +10,7 @@ export default class Poules extends React.Component {
             <div className="cmPoules">
                 <div className="cmTitle">
                     <span className="cmSubtitle">Pari sur les phases de qualifications</span>
-                    <button className="cmButton" onClick={ () => this.onSubmit() }>SUBMIT</button>
+                    <button className="cmButton cmSubmitButton" onClick={ () => this.onSubmit() }><i className="fas fa-cloud-upload-alt cmRP05"></i>SUBMIT</button>
                 </div>
 
                 { this.generateGroups() }
@@ -35,15 +35,15 @@ export default class Poules extends React.Component {
     }
     
     generateGroupRow (groupKeys) {
-        return (<div className="poule-groupes">{ groupKeys.map(id => this.generateGroup(id)) }</div>)
+        return (<div className="cmPouleGroupes">{ groupKeys.map(id => this.generateGroup(id)) }</div>)
     }
 
     generateGroup (groupKey) {
         const poule = GameHelper.getGroup(groupKey), groupBets = GameHelper.getGroupBets(groupKey)
         return (
-            <div className="poule-group">
-                <div className="poule-title">GROUPE <strong>{groupKey}</strong></div>
-                { poule.map(id => <PouleItem id={ id } order={ groupBets.indexOf(id) } onItemClicked={ (e) => this.onItemClicked(groupKey, e) }/>) }
+            <div className="cmPouleGroup">
+                <div className="cmPouleTitle">GROUPE <strong>{groupKey}</strong></div>
+                { poule.map(id => <Team id={ id } order={ groupBets.indexOf(id) } onItemClicked={ (e) => this.onItemClicked(groupKey, e) }/>) }
             </div>
         );
     }

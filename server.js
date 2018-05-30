@@ -3,10 +3,10 @@ const app = express();
 const fs = require("fs");
 
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-var allowCrossDomain = function(req, res, next) {
+var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -17,19 +17,20 @@ app.use(allowCrossDomain);
 
 const DATA_FILE = 'serverdatas.json'
 let serverDatas = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))
-console.log(serverDatas)
 
 app.get('/users', function (req, res) {
     let users = Object.keys(serverDatas.users)
     res.end(JSON.stringify(users))
 })
 
+
 app.get('/logon/:user', function (req, res) {
     const userDatas = serverDatas.users[req.params.user]
     if (userDatas) {
-        const result = {
-            stage: serverDatas.step,
-            userDatas: userDatas
+        let result = {
+            userDatas: userDatas,
+            stage: serverDatas.stage,
+            qualification: serverDatas.qualification
         }
         res.end(JSON.stringify(result))
     } else {
@@ -54,13 +55,10 @@ app.post('/groupbets/:user', function (req, res) {
     writeServerDatas()
 })
 
-var server = app.listen(9001, function () {
-    var host = server.address().address
-    var port = server.address().port
-    console.log('Example app listening at http://%s:%s', host, port)
-})
-
+var server = app.listen(9001)
 
 function writeServerDatas () {
     fs.writeFileSync(DATA_FILE, JSON.stringify(serverDatas))
 }
+
+console.log(__dirname)

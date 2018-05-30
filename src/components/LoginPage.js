@@ -9,7 +9,7 @@ export default class LoginPage extends React.Component {
                 <div>
                     <input className="cmInput" type="text" ref="userName" placeholder="Username" defaultValue={ this.props.userName }/>
                 </div>
-                <button className="cmLoginButton" onClick={ (e) => this.onLogin() }>Login</button>
+                <button className="cmButton cmLoginButton" onClick={ (e) => this.onLogin() }>Login</button>
             </div>
         )
     }
