@@ -1,4 +1,5 @@
 import React from 'react'
+import TopBanner from './TopBanner'
 import Poules from './poules'
 import '../../assets/css/app.css'
 
@@ -6,13 +7,10 @@ export default class App extends React.Component {
 
     render () {
         return (
-            <div className='image'>
-            <label>Hello { this.props.message } </label>
+            <div>
+            <TopBanner/>>
             <Poules/>
             </div>
         )
-    }
-
-    toto (/*str: string */) {
     }
 }

@@ -1,0 +1,30 @@
+.cmTopBanner {
+    position: fixed;
+    background-color: #f4f4f4;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+}
+
+.cmTopBannerTitle {
+    color: black;
+    margin: 0 auto;
+    display: table;
+    vertical-align: middle;
+    line-height: 2rem;
+}
+
+.cmUserInfo {
+    position: absolute;
+    right: 0.5rem;
+    top: 25%;
+}
+
+.cmLoginIcon {
+    padding-right: 0.25rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.cmUserName {
+    font-size: 0.75rem;
+}

@@ -6,6 +6,11 @@ class GameHelper {
     constructor () {
         this.baseUrl = null
         this.userDatas = null
+
+        try {
+            let storedInfos = JSON.parse(localStorage.getItem('cm2018'))
+            this.logon(storedInfos.userName)
+        } catch (e) {}
     }
     
     setBaseUrl (baseUrl) {
@@ -14,8 +19,9 @@ class GameHelper {
 
     logon (userName) {
         return new Promise((resolve, reject) => {
-            axios.get(this.baseUrl + '/logon/' + this.userName)
+            axios.get(this.baseUrl + '/logon/' + userName)
                 .then(result => {
+                    this.setUserName(userName)
                     this.setUserData(result.data)
                     resolve(result.data)
                 })
@@ -34,8 +40,12 @@ class GameHelper {
 
     setUserName (userName) {
         this.userName = userName
+        this.updateStoredInfos()
     }
 
+    getUserName () {
+        return this.userName
+    }
 
     setGroupBet (groupKey, countryId) {
         let groupBets = this.getGroupBets(groupKey)
@@ -71,6 +81,13 @@ class GameHelper {
             bets = this.userDatas.groupBets[id] = []
         }
         return bets
+    }
+
+    updateStoredInfos () {
+        try {
+            let datas = { userName: this.getUserName() }
+            localStorage.setItem('cm2018', JSON.stringify(datas))
+        } catch (e) {}
     }
 }
 
