@@ -17,7 +17,7 @@ export default class TeamGroup extends React.Component {
             <div className='cmTeamGroup'>
                 <div className='cmTeamGroupTitle'>
                     <span>{ this.props.title }</span>
-                    { warningVisible ? <i className="fas fa-exclamation-circle cmTeamWarningIcon" title="Tous les matchs n'ont pas ete saisis"></i> : null }
+                    { warningVisible ? <i className="fas fa-exclamation-circle cmTeamWarningIcon" title="Tous les matchs de ce groupe n'ont pas ete saisis"></i> : null }
                 </div>
                 { this.props.teams.map(id => <Team id={ id } order={ this.state.selection.indexOf(id) } onItemClicked={ (e) => this.onTeamClicked(id) }/>) }
             </div>

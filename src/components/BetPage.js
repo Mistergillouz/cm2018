@@ -21,7 +21,7 @@ export default class BetPage extends React.Component {
         return (
             <div className='cmBetPage'>
                 <div className='cmPoulesTitle'>
-                    <span className='cmPoulesSubtitle'>Pari sur les phases de qualifications</span>
+                    <span className='cmPoulesSubtitle'>PARIS</span>
                     { submitVisible ? 
                         <button className='cmButton cmSubmitButton' onClick={ () => this.onSubmit() }><i className='fas fa-cloud-upload-alt cmRP05'></i>SUBMIT</button> : null }
                 </div>

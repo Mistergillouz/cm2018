@@ -1,6 +1,11 @@
-const express = require('express');
-const app = express();
+var path = require('path');
+var express = require('express');
+var app = express();
 const fs = require('fs');
+
+var htmlPath = path.join(__dirname, '/');
+
+app.use(express.static(htmlPath));
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
@@ -13,6 +18,7 @@ var allowCrossDomain = function (req, res, next) {
 
     next();
 }
+
 app.use(allowCrossDomain);
 
 const DATA_FILE = 'serverdatas.json'
@@ -23,6 +29,18 @@ app.get('/users', function (req, res) {
     res.end(JSON.stringify(users))
 })
 
+app.get('/bets', function (req, res) {
+    res.end(JSON.stringify(serverDatas.users))
+})
+
+app.get('/bets/:user', function (req, res) {
+    const user = serverDatas.users[req.params.user]
+    if (user) {
+        res.end(JSON.stringify(user))
+    } else {
+        res.sendStatus(404)
+    }
+})
 
 app.get('/logon/:user', function (req, res) {
     const user = serverDatas.users[req.params.user]
@@ -57,14 +75,18 @@ app.post('/bets/:user', function (req, res) {
     }
 
     user.bets = req.body.bets
+    user.date = new Date().toISOString()
+    
     res.sendStatus(200)
     writeServerDatas()
 })
 
-var server = app.listen(9001)
+var server = app.listen(9000, function () {
+    var host = 'localhost';
+    var port = server.address().port;
+    console.log('listening on http://'+host+':'+port+'/');
+});
 
 function writeServerDatas () {
     fs.writeFileSync(DATA_FILE, JSON.stringify(serverDatas))
 }
-
-console.log(__dirname)
