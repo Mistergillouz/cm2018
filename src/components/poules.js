@@ -1,53 +1,47 @@
 import React from 'react'
 import GameHelper from '../data/GameHelper'
+import Constants from '../data/Constants'
 import TeamGroup from './TeamGroup'
 
 import '../../assets/css/Poules.css'
 
 export default class Poules extends React.Component {
 
+    constructor (props) {
+        super (props)
+
+        this.bets = this.props.bets
+    }
+
     render () {
         const submitVisible = this.props.submitVisible
         return (
-            <div className="cmPoules">
-            
-                <div className="cmPouleTitle">
-                    <span className="cmPouleSubtitle">Pari sur les phases de qualifications</span>
-                    { submitVisible ? 
-                        <button className="cmButton cmSubmitButton" onClick={ () => this.onSubmit() }><i className="fas fa-cloud-upload-alt cmRP05"></i>SUBMIT</button> : null }
-                </div>
-
+            <div className='cmPoules'>
                 { this.generateGroups() }
             </div>
         )
     }
 
-    onSubmit () {
-        GameHelper.saveGroupBets().then(result => console.log('Submit: ok')).catch(error => {
-            alert(error.response.statusText + '\n' + error.response.data)
-        })
-    }
+    onSelectedTeamsChanged (groupKey, selection) {
+        this.bets[groupKey] = selection
 
-    onTeamClicked (groupKey, id) {
-        this.props.onTeamClicked(groupKey, id)
+        let bets = []
+        Object.keys(this.bets).forEach(key => bets = bets.concat(this.bets[key]))
+        this.props.onGroupSelectionChanged(bets)
     }
     
     generateGroups () {
-        let groups = GameHelper.getGroups()
-        return this.generateGroupRow(Object.keys(groups))
+        return (<div className='cmPouleGroups'>{ GameHelper.getGroups().map(key => this.generatePouleGroup(key)) }</div>)
     }
     
-    generateGroupRow (groupKeys) {
-        return (<div className="cmPouleGroups">{ groupKeys.map(id => this.generateGroup(id)) }</div>)
-    }
-
-    generateGroup (groupKey) {
-        const poule = GameHelper.getGroup(groupKey), groupBets = GameHelper.getGroupBets(groupKey)
+    generatePouleGroup (key) {
+        const poule = GameHelper.getGroup(key), selection = this.bets[key]
         return <TeamGroup 
-            title={ 'GROUPE ' + groupKey }
+            title={ 'GROUPE ' + key }
+            selectionCount={ 2 }
             teams={ poule } 
-            selectedTeams={ groupBets }
-            onTeamClicked={ id => this.onTeamClicked(groupKey, id) }
+            selection={ selection }
+            onSelectionChanged={ selection => this.onSelectedTeamsChanged(key, selection) }
         />
     }
 

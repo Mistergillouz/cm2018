@@ -1,1 +1,50 @@
-{"users":{"Gillouz":{"groupBets":{"A":["RUS","URU","EGY","ARA"],"B":["POR","ESP","IRA","MAR"],"C":["FRA","PER","DAN","AUS"],"D":[],"E":[],"F":[],"G":[],"H":[]}},"ColClark":{},"Steph":{}},"stage":"poules"}
+{
+    "users": {
+        "Gillouz": {
+            "bets": {
+                "QUALIF": [
+                    "RUS",
+                    "URU",
+                    "POR",
+                    "ESP",
+                    "FRA",
+                    "PER",
+                    "NIG",
+                    "ARG",
+                    "BRE",
+                    "SUI",
+                    "ALL",
+                    "SUE",
+                    "ANG",
+                    "BEL",
+                    "POL",
+                    "COL"
+                ],
+                "HUITIEME": [
+                    "URU",
+                    "FRA",
+                    "NIG",
+                    "BRE",
+                    "ANG",
+                    "POL",
+                    "SUI",
+                    "RUS"
+                ],
+                "QUART": [
+                    "FRA",
+                    "NIG",
+                    "ANG",
+                    "SUI"
+                ],
+                "DEMI": [
+                    "NIG",
+                    "SUI"
+                ],
+                "FINALE": []
+            }
+        },
+        "ColClark": {},
+        "Steph": {}
+    },
+    "readOnly": false
+}

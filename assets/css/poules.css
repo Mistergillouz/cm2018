@@ -1,29 +1,10 @@
 .cmPoules {
-    position: absolute;
     width: 100%;
-    top: 5%;
-}
-
-.cmPouleTitle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cmPouleSubtitle {
-    font-weight: bold;
-    font-size: 1.5rem;
 }
 
 .cmPouleGroups {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 2rem;
-}
-
-.cmSubmitButton {
-    margin-left: 2rem;
     justify-content: center;
     padding-top: 2rem;
 }

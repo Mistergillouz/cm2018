@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const fs = require("fs");
+const fs = require('fs');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
@@ -25,10 +25,10 @@ app.get('/users', function (req, res) {
 
 
 app.get('/logon/:user', function (req, res) {
-    const userDatas = serverDatas.users[req.params.user]
-    if (userDatas) {
+    const user = serverDatas.users[req.params.user]
+    if (user) {
         let result = {
-            userDatas: userDatas,
+            bets: user.bets || {},
             readOnly: serverDatas.readOnly,
             qualification: serverDatas.qualification
         }
@@ -38,25 +38,25 @@ app.get('/logon/:user', function (req, res) {
     }
 })
 
-app.post('/groupbets/:user', function (req, res) {
+app.post('/bets/:user', function (req, res) {
 
-    if (userDatas.readOnly) {
+    if (serverDatas.readOnly) {
         res.status(500).send('Update are now disabled')
         return
     }
 
-    let userData = serverDatas.users[req.params.user]
-    if (!userData) {
+    let user = serverDatas.users[req.params.user]
+    if (!user) {
         res.sendStatus(404)
         return
     }
 
-    if (!req.body.groupBets) {
-        res.status(500).send('Cannot find groupBets attribute')
+    if (!req.body.bets) {
+        res.status(500).send('Cannot find bets attribute')
         return
     }
 
-    userData.groupBets = req.body.groupBets
+    user.bets = req.body.bets
     res.sendStatus(200)
     writeServerDatas()
 })

@@ -1,5 +1,5 @@
 .cmTopBanner {
-    position: fixed;
+    position: relative;
     background-color: #f4f4f4;
     width: 100%;
     border-bottom: 1px solid lightgray;

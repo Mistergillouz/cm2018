@@ -1,11 +1,11 @@
 import axios from 'axios'
-import * as GAMEDATAS from './data.json'
+import Constants from '../data/Constants'
 
 class GameHelper {
    
     constructor () {
         this.baseUrl = null
-        this.userDatas = null
+        this.bets = null
     }
 
     init (baseUrl) {
@@ -28,27 +28,96 @@ class GameHelper {
             axios.get(this.baseUrl + '/logon/' + userName)
                 .then(result => {
                     this.setUserName(userName)
-                    this.setUserData(result.data)
+                    this.setServerUserData(result.data)
                     resolve(result.data)
                 })
                 .catch(result => reject(result))
         })
     }
 
+    
+    setGroupBet (groupKey, selectedCountries) {
+        this.setBet(Constants.BETS.QUALIF, selectedCountries, groupKey)
+    }
+
+    
+    getGroupBets () {
+        let result = {}
+        const bets = this.getBet(Constants.BETS.QUALIF)
+
+        this.getGroups().forEach(groupId => {
+            result[groupId] = []
+            this.getGroup(groupId).forEach(countryId => {
+                if (bets.indexOf(countryId) !== -1) {
+                    result[groupId].push(countryId)
+                }
+            })
+        })
+
+        return result
+    }
+
+    getBet (bet) {
+        return this.bets[bet.key] || []
+    }
+
+    setBet (bet, selection) {
+        this.bets[bet.key] = selection
+        this.checkBets()
+    }
+
+    checkBets () {
+        // Check if selection is valid else remove invalid entries
+        const phases = Object.values(Constants.BETS)
+        for (let i = 0; i < phases.length - 1; i++) {
+            const bets0 = this.getBet(phases[i])
+            let bets1 = this.getBet(phases[i + 1])
+            for (let j = bets1.length - 1; j >= 0; j--) {
+                if (bets0.indexOf(bets1[j]) === -1) {
+                    bets1.splice(j, 1)
+                }
+            }
+        }
+    }
+
+    getFinaleGroups () {
+        let groups = {}, bets = Object.values(Constants.BETS)
+        bets.forEach((bet, index) => {
+            if (index > 0) {
+                groups[bet.key] = this.getBet(bets[index - 1])
+            }
+        })
+
+        return groups
+    }
+
+    setFinaleTeam (finale, team) {
+        if (!this.userDatas.finales) {
+            this.userDatas.finales = {}
+        }
+        this.userDatas.finales[finale] = team
+    }
+
+    getFinaleTeams (finale) {
+        if (!this.userDatas.finales) {
+            this.userDatas.finales = {}
+        }
+        return this.userDatas.finales[finale] || []
+    }
+
     isSubmitAllowed () {
         return this.isLogged() && !this.readOnly
     }
     isLogged () {
-        return !!(this.userName && this.userDatas)
+        return !!this.userName
     }
 
-    saveGroupBets () {
-        this.buildMatches()
-        return axios.post(this.baseUrl + '/groupBets/' + this.userName, { groupBets: this.userDatas.groupBets })
+    submitBets () {
+        return axios.post(this.baseUrl + '/bets/' + this.userName, { bets: this.bets })
     }
 
-    setUserData (data) {
-        this.userDatas = data.userDatas
+    setServerUserData (data) {
+        this.bets = data.bets
         this.readOnly = data.readOnly
         this.qualification = data.qualification
     }
@@ -62,44 +131,18 @@ class GameHelper {
         return this.userName
     }
 
-    setGroupBet (groupKey, countryId) {
-        let groupBets = this.getGroupBets(groupKey)
-        let index = groupBets.indexOf(countryId)
-        if (index === -1) {
-            groupBets.push(countryId)
-        } else {
-            groupBets.splice(index, 1)
-        }
-
-        if (groupBets.length > 2) {
-            groupBets.splice(0, groupBets.length - 2)
-        }
-    }
-
     getImagePath (id) {
         return 'assets/images/' + id + '.png';
     }
     getCountry (id) {
-        return GAMEDATAS.codePays[id]
+        return Constants.COUNTRIES[id]
     }
 
     getGroup (id) {
-        return GAMEDATAS.groupes[id]
+        return Constants.GROUPS[id]
     }
     getGroups () {
-        return GAMEDATAS.groupes
-    }
-
-    getGroupBets (id) {
-        if (!this.userDatas.groupBets) {
-            this.userDatas.groupBets = {}
-        }
-
-        let bets = this.userDatas.groupBets[id]
-        if (!bets) {
-            bets = this.userDatas.groupBets[id] = []
-        }
-        return bets
+        return Object.keys(Constants.GROUPS)
     }
 
     updateStoredInfos () {
@@ -111,34 +154,8 @@ class GameHelper {
         }
     }
 
-    buildMatches (step) {
-
-        // 8eme
-        const table = [
-            [ 'A1B2', 'C1D2'],
-            [ 'B1A2', 'D1C2'],
-            [ 'E1F2', 'G1H2'],
-            [ 'F1E2', 'H1G2']
-        ]
-
-        let matches = []
-        table.forEach((entry, index) => {
-            entry.forEach(match => {
-                matches.push({
-                    index: index,
-                    teams: [ 
-                        this._teamCode(match.substr(0, 2)), 
-                        this._teamCode(match.substr(2))]
-                })
-            })
-        })
-    }
-
-    _teamCode (teamCode) {
-        let bet = this.getGroupBets(teamCode.charAt(0));
-        return bet[Number(teamCode.charAt(1)) - 1]
-    }
 }
+
 
 // Singleton
 const GameHelperSingleton = new GameHelper();

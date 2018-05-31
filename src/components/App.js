@@ -2,7 +2,7 @@ import React from 'react'
 
 import TopBanner from './TopBanner'
 import LoginPage from './LoginPage'
-import MainPage from './MainPage'
+import BetPage from './BetPage'
 import GameHelper from '../data/GameHelper'
 
 
@@ -40,12 +40,12 @@ export default class App extends React.Component {
             />
         }
 
-        return <MainPage/>
+        return <BetPage/>
     }
 
     onLogin (userName) {
         GameHelper.logon(userName)
             .then(result => this.setState({ showLoginPage: false, isLogged: true }))
-            .catch(() => alert('Invalid user \"' + userName + '\"'))
+            .catch(() => alert('Invalid user \'' + userName + '\''))
     }
 }

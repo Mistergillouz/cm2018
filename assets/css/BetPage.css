@@ -1,0 +1,21 @@
+
+.cmBetPage {
+}
+
+.cmPoulesTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cmPoulesSubtitle {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
+.cmSubmitButton {
+    margin-left: 2rem;
+    justify-content: center;
+    padding-top: 2rem;
+}

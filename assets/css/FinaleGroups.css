@@ -1,0 +1,7 @@
+.cmFinales {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: center;
+    padding-top: 2rem;
+}

@@ -8,10 +8,10 @@ export default class Team extends React.Component {
         let id = this.props.id, order = this.props.order
         let clazz = order === -1 ? 'cmTeamGrayed' : ''
         return (
-            <div className={ "cmTeam " + clazz } onClick={ () => this.onClick() }>
-                <img className="cmTeamImage" src={ GameHelper.getImagePath(id) }/>
-                <div className="cmTeamName">{ GameHelper.getCountry(id) }</div>
-                <div className="cmTeamSelectMark" >
+            <div className={ 'cmTeam ' + clazz } onClick={ () => this.onClick() }>
+                <img className='cmTeamImage' src={ GameHelper.getImagePath(id) }/>
+                <div className='cmTeamName'>{ GameHelper.getCountry(id) }</div>
+                <div className='cmTeamSelectMark' >
                     { this.generateVoteResult(order) }
                 </div>
             </div>
@@ -20,7 +20,7 @@ export default class Team extends React.Component {
 
     generateVoteResult (order) {
         if (order !== -1) {
-            return <i className="fas fa-check cmTeamSelected"></i>
+            return <i className='fas fa-check cmTeamSelected'></i>
         }
 
         return null
