@@ -7,12 +7,6 @@ import '../../assets/css/FinaleGroups.css'
 
 export default class FinaleGroups extends React.Component {
 
-    constructor (props) {
-        super(props)
-        this.state = {
-            groups: this.props.finales
-        }
-    }
     render () {
 
         const groups = [
@@ -26,7 +20,7 @@ export default class FinaleGroups extends React.Component {
             <div className='cmFinales'>
                 { groups.map(group => <TeamGroup title={ group.title } 
                     selectionCount={ group.selectionCount }
-                    teams={ this.state.groups[group.key] } 
+                    teams={ this.props.finales[group.key] } 
                     selection={ GameHelper.getBet(group) } 
                     onSelectionChanged={ selection => this.onTeamClicked(group, selection) }/>) 
                 }
@@ -34,8 +28,7 @@ export default class FinaleGroups extends React.Component {
         )
     }
 
-    onTeamClicked (group, selection) {
-        GameHelper.setBet(group, selection)
-        this.setState({ groups: GameHelper.getFinaleGroups() })
+    onTeamClicked (finale, selection) {
+        this.props.onFinaleSelectionChanged(finale, selection)
     }
 }

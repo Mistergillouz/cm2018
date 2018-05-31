@@ -27,9 +27,14 @@ export default class BetPage extends React.Component {
                 </div>
 
                 <Poules bets={ GameHelper.getGroupBets() } onGroupSelectionChanged={ selection => this.onGroupSelectionChanged(selection) }/>
-                <FinaleGroups finales={ this.state.finales }/>
+                <FinaleGroups finales={ this.state.finales } onFinaleSelectionChanged={ (finale, selection) => this.onFinaleSelectionChanged(finale, selection)} />
             </div>
         )
+    }
+
+    onFinaleSelectionChanged (finale, selection) {
+        GameHelper.setBet(finale, selection)
+        this.setState({ finales: GameHelper.getFinaleGroups() })
     }
 
     onGroupSelectionChanged (selection) {

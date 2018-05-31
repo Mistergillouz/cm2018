@@ -9,36 +9,35 @@
                     "ESP",
                     "FRA",
                     "PER",
+                    "CRO",
                     "NIG",
-                    "ARG",
                     "BRE",
-                    "SUI",
-                    "ALL",
+                    "SER",
                     "SUE",
+                    "COR",
+                    "TUN",
                     "ANG",
-                    "BEL",
                     "POL",
-                    "COL"
+                    "JAP"
                 ],
                 "HUITIEME": [
-                    "URU",
-                    "FRA",
-                    "NIG",
-                    "BRE",
-                    "ANG",
+                    "TUN",
                     "POL",
-                    "SUI",
-                    "RUS"
+                    "BRE",
+                    "PER",
+                    "ESP",
+                    "POR",
+                    "RUS",
+                    "FRA"
                 ],
                 "QUART": [
-                    "FRA",
-                    "NIG",
-                    "ANG",
-                    "SUI"
+                    "TUN",
+                    "POL",
+                    "PER",
+                    "BRE"
                 ],
                 "DEMI": [
-                    "NIG",
-                    "SUI"
+                    "PER"
                 ],
                 "FINALE": []
             }
