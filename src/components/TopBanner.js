@@ -10,8 +10,8 @@ export default class TopBanner extends React.Component {
         return (
             <div className='cmTopBanner'>
                 <span className='cmTopBannerTitle'>Coupe du monde 2018</span>
-                <div className='cmUserInfo'>
-                    <i className='far fa-user cmLoginIcon' onClick={ (e) => this.onLogin() }></i>
+                <div className='cmUserInfo'  onClick={ (e) => this.onLogin() }>
+                    <i className='far fa-user cmLoginIcon'></i>
                     <span className='cmUserName'>{ userNameText }</span>
                 </div>
                 <div className="cmResultIcon" onClick={ (e) => this.onShowResult() }>

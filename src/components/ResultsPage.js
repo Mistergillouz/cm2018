@@ -12,7 +12,7 @@ export default class ResultsPage extends React.Component {
 
         this.state = {
             results: null,
-            currentUser: null
+            currentUser: GameHelper.getUserName()
         }
 
         GameHelper.loadResults().then(requestData => this.setState({ 
@@ -62,7 +62,7 @@ export default class ResultsPage extends React.Component {
     }
 
     generateUserBets () {
-        if (!this.state.currentUser) {
+        if (!this.state.currentUser || !this.state.results) {
             return null
         }
 
