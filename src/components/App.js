@@ -1,9 +1,10 @@
 import React from 'react'
 
+import GameHelper from '../data/GameHelper'
 import TopBanner from './TopBanner'
 import LoginPage from './LoginPage'
 import BetPage from './BetPage'
-import GameHelper from '../data/GameHelper'
+import ResultsPage from './ResultsPage'
 
 
 import '../../assets/css/app.css'
@@ -13,9 +14,10 @@ export default class App extends React.Component {
     constructor (props) {
         super(props)
 
+        const isLogged = GameHelper.isLogged()
         this.state = { 
-            isLogged: false, 
-            showLoginPage: false
+            isLogged, 
+            page: null
         }
     }
 
@@ -24,28 +26,47 @@ export default class App extends React.Component {
             <div>
                 <TopBanner 
                     userName={ GameHelper.getUserName() } 
-                    onEnterUserName={ () => this.setState({ showLoginPage: true })}/>
+                    onEnterUserName={ () => this.setState({ page: App.PAGES.LOGIN })}
+                    onShowResults={ () => this.setState({ page: App.PAGES.RESULTS })}
+                />
 
-                { this.renderState() }
+                { this.renderPage() }
             </div>
         )
     }
 
-    renderState () {
+    renderPage () {
 
-        if (this.state.showLoginPage || (!this.state.isLogged && !this.props.isLogged)) {
-            return <LoginPage 
-                userName={ GameHelper.getUserName() } 
-                onLogin={ (userName) => this.onLogin(userName) }
-            />
+        switch (this.state.page || this.getDefaultPage()) {
+
+            case App.PAGES.LOGIN:
+                return <LoginPage 
+                    userName={ GameHelper.getUserName() } 
+                    onLogin={ (userName) => this.onLogin(userName) }
+                />
+
+            case App.PAGES.BETS:
+                return <BetPage/>
+            
+            case App.PAGES.RESULTS:
+                return <ResultsPage/>
+            
+            default:
+                return null
         }
-
-        return <BetPage/>
     }
 
     onLogin (userName) {
         GameHelper.logon(userName)
-            .then(result => this.setState({ showLoginPage: false, isLogged: true }))
+            .then(result => this.setState({ isLogged: true, page: null }))
             .catch(() => alert('Invalid user \'' + userName + '\''))
     }
+
+    getDefaultPage () {
+        return GameHelper.isSubmitAllowed() ? App.PAGES.BETS : App.PAGES.RESULTS
+    }
 }
+
+App.PAGES = { 'LOGIN': 'login', RESULTS: 'results', BETS: 'Bets' }
+
+    

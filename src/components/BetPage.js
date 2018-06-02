@@ -17,19 +17,32 @@ export default class BetPage extends React.Component {
     }
 
     render () {
-        const submitVisible =GameHelper.isSubmitAllowed()
+        const bets = GameHelper.getBets()
         return (
             <div className='cmBetPage'>
                 <div className='cmPoulesTitle'>
-                    <span className='cmPoulesSubtitle'>PARIS</span>
-                    { submitVisible ? 
-                        <button className='cmButton cmSubmitButton' onClick={ () => this.onSubmit() }><i className='fas fa-cloud-upload-alt cmRP05'></i>SUBMIT</button> : null }
+                    { this.renderSubmitButton() }
                 </div>
-
                 <Poules bets={ GameHelper.getGroupBets() } onGroupSelectionChanged={ selection => this.onGroupSelectionChanged(selection) }/>
-                <FinaleGroups finales={ this.state.finales } onFinaleSelectionChanged={ (finale, selection) => this.onFinaleSelectionChanged(finale, selection)} />
+                <FinaleGroups finales={ this.state.finales } bets={ bets } onFinaleSelectionChanged={ (finale, selection) => this.onFinaleSelectionChanged(finale, selection)} />
             </div>
         )
+    }
+
+    renderSubmitButton () {
+        const submitVisible = GameHelper.isSubmitAllowed()
+        if (!submitVisible) {
+            return null
+        }
+
+        const completed = GameHelper.isBetsCompleted()
+        return (
+            <div className="cmSubmitButtonContainer">
+            <button className='cmButton cmSubmitButton' onClick={ () => this.onSubmit() }><i className='fas fa-cloud-upload-alt cmRP05'></i>SUBMIT</button>
+                { !completed ? <span className="cmBetNotCompleted"><i className="fas fa-info-circle"></i>&nbsp;Tous les paris n'ont pas ete saisi</span> : null }
+            </div>
+        )
+
     }
 
     onFinaleSelectionChanged (finale, selection) {

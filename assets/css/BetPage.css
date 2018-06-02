@@ -14,9 +14,20 @@
     font-size: 1.5rem;
 }
 
+.cmSubmitButtonContainer {
+    display: flex;
+    align-items: center;
+}
 
 .cmSubmitButton {
     margin-left: 2rem;
     justify-content: center;
     padding-top: 2rem;
+}
+
+.cmBetNotCompleted {
+    font-size: 0.65rem;
+    padding-left: 0.5rem;
+    width: 7rem;
+    margin-left: 1rem;
 }

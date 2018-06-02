@@ -1,4 +1,6 @@
 import React from 'react'
+import GameHelper from '../data/GameHelper'
+
 import '../../assets/css/TopBanner.css'
 
 export default class TopBanner extends React.Component {
@@ -12,12 +14,19 @@ export default class TopBanner extends React.Component {
                     <i className='far fa-user cmLoginIcon' onClick={ (e) => this.onLogin() }></i>
                     <span className='cmUserName'>{ userNameText }</span>
                 </div>
+                <div className="cmResultIcon" onClick={ (e) => this.onShowResult() }>
+                    <span>TEST</span>
+                </div>
             </div>
         )
     }
 
     onLogin () {
         this.props.onEnterUserName()
+    }
+
+    onShowResult () {
+        this.props.onShowResults()
     }
 
 }

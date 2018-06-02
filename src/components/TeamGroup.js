@@ -12,12 +12,12 @@ export default class TeamGroup extends React.Component {
     }
     render () {
 
-        let warningVisible = (this.state.selection.length !== this.props.selectionCount)
+        let warningVisible = (this.state.selection.length !== this.props.selectionCount) && !this.props.readOnly
         return (
             <div className='cmTeamGroup'>
                 <div className='cmTeamGroupTitle'>
                     <span>{ this.props.title }</span>
-                    { warningVisible ? <i className="fas fa-exclamation-circle cmTeamWarningIcon" title="Tous les matchs de ce groupe n'ont pas ete saisis"></i> : null }
+                    { warningVisible ? <i className="fas fa-exclamation-triangle cmTeamWarningIcon" title="Tous les matchs de ce groupe n'ont pas ete saisis"></i> : null }
                 </div>
                 { this.props.teams.map(id => <Team id={ id } order={ this.state.selection.indexOf(id) } onItemClicked={ (e) => this.onTeamClicked(id) }/>) }
             </div>
@@ -25,6 +25,11 @@ export default class TeamGroup extends React.Component {
     }
 
     onTeamClicked (id) {
+
+        if (this.props.readOnly) {
+            return
+        }
+        
         let selection = this.state.selection.slice()
         
         const index = selection.indexOf(id)

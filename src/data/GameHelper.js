@@ -35,6 +35,9 @@ class GameHelper {
         })
     }
 
+    loadResults () {
+        return axios.get(this.baseUrl + '/results')
+    }
     
     setGroupBet (groupKey, selectedCountries) {
         this.setBet(Constants.BETS.QUALIF, selectedCountries, groupKey)
@@ -55,6 +58,10 @@ class GameHelper {
         })
 
         return result
+    }
+
+    getBets () {
+        return this.bets || {}
     }
 
     getBet (bet) {
@@ -108,8 +115,13 @@ class GameHelper {
     isSubmitAllowed () {
         return this.isLogged() && !this.readOnly
     }
+
     isLogged () {
         return !!this.userName
+    }
+
+    isBetsCompleted () {
+        return Object.values(Constants.BETS).every(bet => this.getBet(bet).length === bet.selectionCount)
     }
 
     submitBets () {

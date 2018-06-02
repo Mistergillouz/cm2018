@@ -33,13 +33,41 @@ app.get('/bets', function (req, res) {
     res.end(JSON.stringify(serverDatas.users))
 })
 
-app.get('/bets/:user', function (req, res) {
-    const user = serverDatas.users[req.params.user]
-    if (user) {
-        res.end(JSON.stringify(user))
-    } else {
-        res.sendStatus(404)
+app.get('/results', function (req, res) {
+    
+    const phases = {
+        QUALIF: { count: 16, points: 1 },
+        HUITIEME: { count: 8, points: 2 },
+        QUART: { count: 4, points: 4 },
+        DEMI: { count: 2, points: 8 },
+        FINALE: { count: 1, points: 16 }
     }
+
+    let userResults = {}
+    const results = serverDatas.results
+    getUsers().forEach(user => {
+
+        let completed = false, score = -1
+
+        const bets = getUserBets(user)
+        if (bets) {
+            completed = Object.keys(phases).every(phase => {
+                return Array.isArray(bets[phase]) && bets[phase].length == phases[phase].count
+            })
+            score = Object.keys(phases).reduce((currentScore, phase) => {
+                let phaseScore = 0
+                if (Array.isArray(results[phase]) && Array.isArray(bets[phase])) {
+                    phaseScore = results[phase].reduce((acc, countryId) => bets[phase].indexOf(countryId) === -1 ? acc : acc + phases[phase].points, 0)
+                }
+                return currentScore + phaseScore
+            }, 0)
+
+        }
+        
+        userResults[user] = { user, bets, completed, score }
+    });
+
+    res.end(JSON.stringify({ users: userResults, results }))
 })
 
 app.get('/logon/:user', function (req, res) {
@@ -89,4 +117,12 @@ var server = app.listen(9000, function () {
 
 function writeServerDatas () {
     fs.writeFileSync(DATA_FILE, JSON.stringify(serverDatas))
+}
+
+function getUsers () {
+    return Object.keys(serverDatas.users)
+}
+
+function getUserBets (userName) {
+    return serverDatas.users[userName].bets
 }

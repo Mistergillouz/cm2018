@@ -21,7 +21,8 @@ export default class FinaleGroups extends React.Component {
                 { groups.map(group => <TeamGroup title={ group.title } 
                     selectionCount={ group.selectionCount }
                     teams={ this.props.finales[group.key] } 
-                    selection={ GameHelper.getBet(group) } 
+                    selection={ this.props.bets[group.key] } 
+                    readOnly={ this.props.readOnly }
                     onSelectionChanged={ selection => this.onTeamClicked(group, selection) }/>) 
                 }
             </div>
@@ -29,6 +30,8 @@ export default class FinaleGroups extends React.Component {
     }
 
     onTeamClicked (finale, selection) {
-        this.props.onFinaleSelectionChanged(finale, selection)
+        if (this.props.onFinaleSelectionChanged) {
+            this.props.onFinaleSelectionChanged(finale, selection)
+        }
     }
 }
