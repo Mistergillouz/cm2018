@@ -5,21 +5,21 @@ import '../../assets/css/Team.css'
 export default class Team extends React.Component {
 
     render () {
-        let id = this.props.id, order = this.props.order
-        let clazz = order === -1 ? 'cmTeamGrayed' : ''
+        let id = this.props.id, selected = this.props.selected
+        let clazz = selected ? '' : 'cmTeamGrayed'
         return (
             <div className={ 'cmTeam ' + clazz } onClick={ () => this.onClick() }>
                 <img className='cmTeamImage' src={ GameHelper.getImagePath(id) }/>
                 <div className='cmTeamName'>{ GameHelper.getCountry(id) }</div>
                 <div className='cmTeamSelectMark' >
-                    { this.generateVoteResult(order) }
+                    { this.generateVoteResult(selected) }
                 </div>
             </div>
         )
     }
 
-    generateVoteResult (order) {
-        if (order !== -1) {
+    generateVoteResult (selected) {
+        if (selected) {
             return <i className='fas fa-check cmTeamSelected'></i>
         }
 
