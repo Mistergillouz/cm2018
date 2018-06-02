@@ -7,7 +7,7 @@ export default class TeamGroup extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            selection: props.selection
+            selection: props.selection || []
         }
     }
     render () {
@@ -29,7 +29,7 @@ export default class TeamGroup extends React.Component {
         if (this.props.readOnly) {
             return
         }
-        
+
         let selection = this.state.selection.slice()
         
         const index = selection.indexOf(id)
