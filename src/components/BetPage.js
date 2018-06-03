@@ -41,9 +41,9 @@ export default class BetPage extends React.Component {
 
         const completed = GameHelper.isBetsCompleted()
         return (
-            <div>
-                <button className='cmButton cmSubmitButton' onClick={ () => this.onSubmit() }><i className='fas fa-sign-in-alt cmRP05'></i>SUBMIT</button>
+            <div className="cmSubmitButtonDiv">
                 { !completed ? <span className="cmBetNotCompleted"><i className="fas fa-info-circle"></i>&nbsp;Tous les paris n'ont pas ete saisi</span> : null }
+                <button className='cmButton cmSubmitButton' onClick={ () => this.onSubmit() }><i className='fas fa-sign-in-alt cmRP05'></i>SUBMIT</button>
             </div>
         )
 

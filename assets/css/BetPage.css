@@ -33,9 +33,9 @@
 
 .cmBetNotCompleted {
     font-size: 0.65rem;
-    padding-left: 0.5rem;
-    width: 7rem;
-    margin-left: 1rem;
+    padding-right: 0.5rem;
+    width: 5rem;
+    text-align: right;
 }
 
 .cmGroupSeparator {
@@ -47,4 +47,9 @@
 
 .cmGroupSeparator i {
     margin-right: 0.5rem;
+}
+
+.cmSubmitButtonDiv {
+    display: flex;
+    align-items: center;
 }

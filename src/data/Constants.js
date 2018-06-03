@@ -4,7 +4,7 @@ const Constants = {
     
     BETS: {
         QUALIF: { key: 'QUALIF', title: 'Qualification', selectionCount: 16 },
-        HUITIEME: { key: 'HUITIEME', title: 'Huitieme', selectionCount: 8, finale: true },
+        HUITIEME: { key: 'HUITIEME', title: 'Huitième', selectionCount: 8, finale: true },
         QUART: { key: 'QUART', title: 'Quart', selectionCount: 4, finale: true },
         DEMI: { key: 'DEMI', title: 'Demi Finale', selectionCount: 2, finale: true },
         FINALE: { key: 'FINALE', title: 'Finale', selectionCount: 1, finale: true }
