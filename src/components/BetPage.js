@@ -23,8 +23,12 @@ export default class BetPage extends React.Component {
                 <div className='cmPoulesTitle'>
                     { this.renderSubmitButton() }
                 </div>
-                <Poules bets={ GameHelper.getGroupBets() } onGroupSelectionChanged={ selection => this.onGroupSelectionChanged(selection) }/>
-                <FinaleGroups finales={ this.state.finales } bets={ bets } onFinaleSelectionChanged={ (finale, selection) => this.onFinaleSelectionChanged(finale, selection)} />
+                <div className="cmBetGroups">
+                    <span className="cmGroupSeparator"><i className="fas fa-futbol"></i>Qualification</span>
+                    <Poules bets={ GameHelper.getGroupBets() } onGroupSelectionChanged={ selection => this.onGroupSelectionChanged(selection) }/>
+                    <span className="cmGroupSeparator"><i className="fas fa-futbol"></i>Finales</span>
+                    <FinaleGroups finales={ this.state.finales } bets={ bets } onFinaleSelectionChanged={ (finale, selection) => this.onFinaleSelectionChanged(finale, selection)} />
+                </div>
             </div>
         )
     }
@@ -37,8 +41,8 @@ export default class BetPage extends React.Component {
 
         const completed = GameHelper.isBetsCompleted()
         return (
-            <div className="cmSubmitButtonContainer">
-            <button className='cmButton cmSubmitButton' onClick={ () => this.onSubmit() }><i className='fas fa-cloud-upload-alt cmRP05'></i>SUBMIT</button>
+            <div>
+                <button className='cmButton cmSubmitButton' onClick={ () => this.onSubmit() }><i className='fas fa-sign-in-alt cmRP05'></i>SUBMIT</button>
                 { !completed ? <span className="cmBetNotCompleted"><i className="fas fa-info-circle"></i>&nbsp;Tous les paris n'ont pas ete saisi</span> : null }
             </div>
         )

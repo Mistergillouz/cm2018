@@ -1,12 +1,19 @@
 
 .cmBetPage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     padding-top: 1rem;
 }
 
-.cmPoulesTitle {
+.cmBetGroups {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+}
+
+.cmPoulesTitle {
+    margin-right: 1rem;
 }
 
 .cmPoulesSubtitle {
@@ -20,7 +27,6 @@
 }
 
 .cmSubmitButton {
-    margin-left: 2rem;
     justify-content: center;
     padding-top: 2rem;
 }
@@ -30,4 +36,15 @@
     padding-left: 0.5rem;
     width: 7rem;
     margin-left: 1rem;
+}
+
+.cmGroupSeparator {
+    padding: 0.5rem 7rem 0.5rem 7rem;
+    background-color: #eeb87e;
+    border-radius: 5rem 0 5rem 0;
+    margin-top: 1rem;
+}
+
+.cmGroupSeparator i {
+    margin-right: 0.5rem;
 }

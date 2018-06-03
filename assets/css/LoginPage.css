@@ -3,7 +3,7 @@
     background-color: #f5f2f0;
     border: solid 1px #ccc;
     border-radius: 4px;
-    padding: 20px;
+    padding: 0 1rem 1rem 1rem;
     width: 400px;
     left: 50%;
     top: 25%;
@@ -11,22 +11,8 @@
 }
 
 .cmLoginButton {
-    border: 0;
-    padding: 0 10px;
-    display: block;
-    margin: 10px 0;
-    user-select: none;
-    transition: background-color 200ms ease;
-    -webkit-transition: background-color 200ms ease;
-    color: #FFF;
-    cursor: pointer;
-    display: inline-block;
+    margin-top: 1rem;
     width: 100%;
-    background-color: rgb(43, 124, 185);
-    font-size: 18px;
-    font-weight: 400;
-    border-radius: 4px;
-    line-height: 2.5;
   }
 
 .cmInput {
@@ -41,8 +27,4 @@
     font-weight: 400;
     text-align: left;
     height: auto;
-  }
-
-  .cmLoginButton {
-    width: 100%
-  }
+}
