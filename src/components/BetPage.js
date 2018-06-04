@@ -4,7 +4,7 @@ import Constants from '../data/Constants'
 import Poules from './Poules'
 import FinaleGroups from './FinaleGroups'
 
-import '../../assets/css/BetPage.css'
+import '../../assets/css/BetPage.scss'
 
 export default class BetPage extends React.Component {
 

@@ -1,3 +1,5 @@
+@import 'Defines.scss';
+
 .cmResultsPage {
 }
 
@@ -9,9 +11,8 @@
 }
 
 .cmRankingTableContainer {
-    border: 1px solid #327a81;
+    border: 1px solid $rankingTitle;
     border-radius: 10px;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
     max-width: calc(100% - 2em);
     margin: 1em auto;
     overflow: hidden;
@@ -19,7 +20,7 @@
  }
 
  .cmRankingHeader {
-    background-color: #327a81;
+    background-color: $rankingTitle;
     color: white;
     font-size: 1.5em;
     padding: 0.5rem;
@@ -28,13 +29,14 @@
  }
 
 .cmRankingTable tr:nth-child(2n+1) {
-    background-color: #edf7f8;
+    background-color: lighten($rankingTitle, 50%);
 }
 
 .cmRankingTable th {
-    background-color: #daeff1;
+    background-color: lighten($rankingTitle, 40%);
     font-weight: bold;
 }
+
 .cmRankingTable td, .cmRankingTable th {
     color: #2b686e;
     padding: 10px;

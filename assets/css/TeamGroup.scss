@@ -1,3 +1,5 @@
+@import 'Defines.scss';
+
 .cmTeamGroups {
     display: flex;
     flex-wrap: wrap;
@@ -15,7 +17,7 @@
 .cmTeamGroupTitle {
     font-size: 1.25rem;
     font-weight: bold;
-    background-color: rgb(92,172,233);
+    background-color: $titleColor;
     color: white;
     line-height: 2rem;
     border-radius: 0.5rem 0.5rem 0 0;

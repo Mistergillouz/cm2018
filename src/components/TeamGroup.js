@@ -1,6 +1,6 @@
 import React from 'react'
 import Team from './Team'
-import '../../assets/css/TeamGroup.css'
+import '../../assets/css/TeamGroup.scss'
 
 export default class TeamGroup extends React.Component {
 

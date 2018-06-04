@@ -3,7 +3,7 @@ import GameHelper from '../data/GameHelper'
 import Constants from '../data/Constants'
 import FinaleGroups from './FinaleGroups'
 
-import '../../assets/css/ResultsPage.css'
+import '../../assets/css/ResultsPage.scss'
 
 export default class ResultsPage extends React.Component {
 

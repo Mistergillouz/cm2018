@@ -7,7 +7,7 @@ import BetPage from './BetPage'
 import ResultsPage from './ResultsPage'
 
 
-import '../../assets/css/app.css'
+import '../../assets/css/app.scss'
 
 export default class App extends React.Component {
 

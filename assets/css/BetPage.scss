@@ -1,3 +1,4 @@
+@import 'Defines.scss';
 
 .cmBetPage {
     display: flex;
@@ -40,7 +41,8 @@
 
 .cmGroupSeparator {
     padding: 0.5rem 7rem 0.5rem 7rem;
-    background-color: #eeb87e;
+    background-color: $headerColor;
+    color: white;
     border-radius: 5rem 0 5rem 0;
     margin-top: 1rem;
 }
