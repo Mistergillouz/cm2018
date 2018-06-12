@@ -1,1 +1,190 @@
-{"users":{"Gillouz":{"bets":{"QUALIF":["RUS","URU","POR","ESP","FRA","PER","CRO","NIG","BRE","SER","SUE","COR","TUN","ANG","POL","JAP"],"HUITIEME":["TUN","POL","BRE","PER","ESP","POR","RUS","FRA"],"QUART":["TUN","POL","PER","BRE"],"DEMI":["PER","TUN"],"FINALE":["PER"]},"date":"2018-06-01T00:54:51.243Z"},"ColClark":{"bets":{"QUALIF":["URU","EGY","POR","ESP","FRA","PER","ARG","CRO","BRE","SUI","ALL","MEX","BEL","ANG","POL","COL"],"HUITIEME":["URU","POR","ESP","FRA","PER","ARG","CRO","EGY"],"QUART":["URU","POR","ESP","PER"],"DEMI":["URU","ESP"],"FINALE":["ESP"]},"date":"2018-06-02T02:15:59.384Z"},"Steph":{}},"readOnly":false,"results":{"QUALIF":["RUS","URU"],"HUITIEME":["RUS"],"QUART":[],"DEMI":[],"FINALE":[]}}
+{
+    "users": {
+        "Gillouz": {
+            "bets": {
+                "QUALIF": [
+                    "RUS",
+                    "URU",
+                    "POR",
+                    "ESP",
+                    "FRA",
+                    "DAN",
+                    "CRO",
+                    "ISL",
+                    "BRE",
+                    "SUI",
+                    "ALL",
+                    "SUE",
+                    "BEL",
+                    "ANG",
+                    "POL",
+                    "SEN"
+                ],
+                "HUITIEME": [
+                    "ESP",
+                    "POR",
+                    "RUS",
+                    "ANG",
+                    "BEL",
+                    "ALL",
+                    "SUI",
+                    "FRA"
+                ],
+                "QUART": [
+                    "ESP",
+                    "FRA",
+                    "ALL",
+                    "ANG"
+                ],
+                "DEMI": [
+                    "ESP",
+                    "ALL"
+                ],
+                "FINALE": [
+                    "ESP"
+                ]
+            },
+            "date": "2018-06-03T10:11:10.660Z"
+        },
+        "ColClark": {
+            "bets": {
+                "QUALIF": [
+                    "URU",
+                    "EGY",
+                    "POR",
+                    "ESP",
+                    "FRA",
+                    "PER",
+                    "ARG",
+                    "CRO",
+                    "BRE",
+                    "SUI",
+                    "ALL",
+                    "MEX",
+                    "BEL",
+                    "ANG",
+                    "POL",
+                    "COL"
+                ],
+                "HUITIEME": [
+                    "URU",
+                    "POR",
+                    "ESP",
+                    "FRA",
+                    "PER",
+                    "ARG",
+                    "CRO",
+                    "EGY"
+                ],
+                "QUART": [
+                    "URU",
+                    "POR",
+                    "ESP",
+                    "PER"
+                ],
+                "DEMI": [
+                    "URU",
+                    "ESP"
+                ],
+                "FINALE": [
+                    "ESP"
+                ]
+            },
+            "date": "2018-06-02T02:15:59.384Z"
+        },
+        "Steph": {},
+        "Sylvain": {},
+        "Ben": {
+            "bets": {
+                "QUALIF": [
+                    "EGY",
+                    "ARA",
+                    "POR",
+                    "ESP",
+                    "FRA",
+                    "PER",
+                    "ARG",
+                    "CRO",
+                    "BRE",
+                    "SUI",
+                    "ALL",
+                    "SUE",
+                    "BEL",
+                    "ANG",
+                    "POL",
+                    "JAP"
+                ],
+                "HUITIEME": [
+                    "FRA",
+                    "ARG",
+                    "CRO",
+                    "SUI",
+                    "BRE",
+                    "ALL",
+                    "ESP",
+                    "POR"
+                ],
+                "QUART": [
+                    "FRA",
+                    "ESP",
+                    "ALL",
+                    "BRE"
+                ],
+                "DEMI": [
+                    "FRA",
+                    "ESP"
+                ],
+                "FINALE": [
+                    "FRA"
+                ]
+            },
+            "date": "2018-06-05T04:00:01.297Z"
+        },
+        "Alexis": {},
+        "Antoine": {}
+    },
+    "readOnly": false,
+    "results": {
+        "QUALIF": [
+            "RUS",
+            "URU",
+            "POR",
+            "ESP",
+            "FRA",
+            "DAN",
+            "CRO",
+            "ISL",
+            "BRE",
+            "SUI",
+            "ALL",
+            "SUE",
+            "BEL",
+            "ANG",
+            "POL",
+            "SEN"
+        ],
+        "HUITIEME": [
+            "ESP",
+            "POR",
+            "RUS",
+            "ANG",
+            "BEL",
+            "ALL",
+            "SUI",
+            "FRA"
+        ],
+        "QUART": [
+            "ESP",
+            "FRA",
+            "ALL",
+            "ANG"
+        ],
+        "DEMI": [
+            "ESP",
+            "ALL"
+        ],
+        "FINALE": [
+            "ESP"
+        ]
+    }
+}

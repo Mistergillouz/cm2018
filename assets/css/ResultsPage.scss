@@ -8,7 +8,30 @@
     text-align: center;
     border-collapse: collapse;
     width: 100%;
+
+    tbody td:first-child {
+        text-decoration: underline;
+        cursor: pointer;
+
+    }
+
+    td, th {
+        color: #2b686e;
+        padding: 10px;
+    }
+
+    th {
+        background-color: lighten($rankingTitle, 40%);
+        font-weight: bold;
+    }
+        
+    tr:nth-child(2n+1) {
+        background-color: lighten($rankingTitle, 50%);
+    }
 }
+
+
+
 
 .cmRankingTableContainer {
     border: 1px solid $rankingTitle;
@@ -27,18 +50,3 @@
     text-align: center;
     text-transform: uppercase;
  }
-
-.cmRankingTable tr:nth-child(2n+1) {
-    background-color: lighten($rankingTitle, 50%);
-}
-
-.cmRankingTable th {
-    background-color: lighten($rankingTitle, 40%);
-    font-weight: bold;
-}
-
-.cmRankingTable td, .cmRankingTable th {
-    color: #2b686e;
-    padding: 10px;
-    cursor: pointer;
-}

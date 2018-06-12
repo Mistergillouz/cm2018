@@ -1,0 +1,46 @@
+@import 'Defines.scss';
+@import 'TeamGroup.scss';
+@import 'BetPage.scss';
+
+.cmStatsPageContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cmStatsPageHeader {
+    @extend .cmGroupSeparator;
+    width: 15rem;
+}
+
+.cmStatTable {
+
+    margin: 0.5rem;
+
+    .cmStatHeader {
+        @extend .cmTeamGroupTitle;
+    }
+
+    .cmStatRows {
+        display: flex;
+        flex-direction: column;
+        padding: 0;        
+
+        .cmStatRow {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.5rem;
+        }
+    }
+}
+
+.cmStatTables {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    flex-direction: row;
+}
+
+.cmStatTable {
+    width: 10rem;
+}

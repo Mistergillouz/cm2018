@@ -1,7 +1,7 @@
 {
-  "name": "reactapp",
+  "name": "cm2018",
   "version": "1.0.0",
-  "description": "My 1st react app",
+  "description": "Coupe du monde 2018",
   "__main": "index.js",
   "dependencies": {
     "axios": "^0.18.0",

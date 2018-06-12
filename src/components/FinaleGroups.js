@@ -16,13 +16,17 @@ export default class FinaleGroups extends React.Component {
             Constants.BETS.FINALE
         ]
 
+        if (this.props.resultMode) {
+            groups.push(Constants.BETS.WINNER)
+        }
+
         return (
             <div className='cmFinales'>
                 { groups.map(group => <TeamGroup title={ group.title } 
                     selectionCount={ group.selectionCount }
                     teams={ this.props.finales[group.key] } 
                     selection={ this.props.bets[group.key] } 
-                    readOnly={ this.props.readOnly }
+                    resultMode={ this.props.resultMode }
                     onSelectionChanged={ selection => this.onTeamClicked(group, selection) }/>) 
                 }
             </div>

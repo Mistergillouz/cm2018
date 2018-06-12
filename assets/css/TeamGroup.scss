@@ -14,20 +14,24 @@
     width: 12.5rem;
 }
 
+.cmTeamGroupResult {
+    @extend .cmTeamGroup;
+    width: 9rem;
+}
+
 .cmTeamGroupTitle {
-    font-size: 1.25rem;
-    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $titleColor;
     color: white;
     line-height: 2rem;
-    border-radius: 0.5rem 0.5rem 0 0;
+    border-radius: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 .cmTeamWarningIcon {
-    float: right;
-    margin-top: 0.5rem;
-    padding-right: 0.25rem;
-    color: #3084ae;
-    font-size: 1rem;
+    padding-left: 0.5rem;
+    font-size: 0.75rem;
     cursor: pointer;
 }

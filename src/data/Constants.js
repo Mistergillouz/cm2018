@@ -7,7 +7,8 @@ const Constants = {
         HUITIEME: { key: 'HUITIEME', title: 'Huitième', selectionCount: 8, finale: true },
         QUART: { key: 'QUART', title: 'Quart', selectionCount: 4, finale: true },
         DEMI: { key: 'DEMI', title: 'Demi Finale', selectionCount: 2, finale: true },
-        FINALE: { key: 'FINALE', title: 'Finale', selectionCount: 1, finale: true }
+        FINALE: { key: 'FINALE', title: 'Finale', selectionCount: 1, finale: true },
+        WINNER: { key: 'WINNER', title: 'Vainqueur', selectionCount: 0, finale: true }
     },
 
     GROUPS: {

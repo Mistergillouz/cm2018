@@ -5,7 +5,7 @@ import TopBanner from './TopBanner'
 import LoginPage from './LoginPage'
 import BetPage from './BetPage'
 import ResultsPage from './ResultsPage'
-
+import StatsPage from './StatsPage'
 
 import '../../assets/css/app.scss'
 
@@ -28,6 +28,7 @@ export default class App extends React.Component {
                     userName={ GameHelper.getUserName() } 
                     onEnterUserName={ () => this.setState({ page: App.PAGES.LOGIN })}
                     onShowResults={ () => this.setState({ page: App.PAGES.RESULTS })}
+                    onShowStat={ () => this.setState({ page: App.PAGES.STATS })}
                 />
 
                 { this.renderPage() }
@@ -50,6 +51,9 @@ export default class App extends React.Component {
             
             case App.PAGES.RESULTS:
                 return <ResultsPage/>
+
+            case App.PAGES.STATS:
+                return <StatsPage/>
             
             default:
                 return null
@@ -67,6 +71,6 @@ export default class App extends React.Component {
     }
 }
 
-App.PAGES = { 'LOGIN': 'login', RESULTS: 'results', BETS: 'Bets' }
+App.PAGES = { 'LOGIN': 'login', RESULTS: 'results', BETS: 'Bets', STATS: 'Stats' }
 
     

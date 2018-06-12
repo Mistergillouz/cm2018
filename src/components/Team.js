@@ -5,8 +5,9 @@ import '../../assets/css/Team.css'
 export default class Team extends React.Component {
 
     render () {
-        let id = this.props.id, selected = this.props.selected
-        let clazz = selected ? '' : 'cmTeamGrayed'
+        const id = this.props.id, selected = this.props.selected
+        const clazz = selected ? '' : 'cmTeamGrayed'
+
         return (
             <div className={ 'cmTeam ' + clazz } onClick={ () => this.onClick() }>
                 <img className='cmTeamImage' src={ GameHelper.getImagePath(id) }/>
@@ -19,6 +20,11 @@ export default class Team extends React.Component {
     }
 
     generateVoteResult (selected) {
+
+        if (this.props.customText) {
+            return <span>{ this.props.customText }</span>
+        }
+
         if (selected) {
             return <i className='fas fa-check cmTeamSelected'></i>
         }
@@ -27,6 +33,8 @@ export default class Team extends React.Component {
     }
 
     onClick () {
-        this.props.onItemClicked(this.props.id)
+        if (this.props.onItemClicked) {
+            this.props.onItemClicked(this.props.id)
+        }
     }
 }

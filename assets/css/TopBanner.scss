@@ -27,11 +27,15 @@
 .cmUserName {
 }
 
-.cmResultIcon {
+.cmResultMenu {
     float: left;
     position: absolute;
     top: 25%;
     padding-left: 1rem;
     cursor: pointer;
     color: red;
+
+    span {
+        margin-right: 1rem;
+    }
 }
