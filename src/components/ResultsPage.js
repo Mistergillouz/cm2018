@@ -10,7 +10,16 @@ export default class ResultsPage extends React.Component {
     constructor (props) {
         super(props)
 
+        this.columns = [
+            { text: 'Nom', id: 'name', type: 'string' },
+            { text: 'Vote', id: 'vote', type: 'boolean' },
+            { text: 'Points', type: 'Numeric', id: 'score' },
+            { text: 'Rank', type: 'Numeric', id: 'rank' }
+        ]
+
         this.state = {
+            sortIndex: 0,
+            sortAscending: true,
             results: null,
             currentUser: GameHelper.getUserName()
         }
@@ -38,31 +47,73 @@ export default class ResultsPage extends React.Component {
             return null
         }
 
-        const keys = Object.keys(users).sort((a, b) => users[b].score - users[a].score)
         return (
-            
             <div className="cmResultRanking">
                 <table className="cmRankingTable" cellSpacing="0">
                     <thead>
                         <tr>
-                            <th>Nom</th>
-                            <th>Vote</th>
-                            <th>Points</th>
-                            <th>Rank</th>
+                            { this.columns.map((column, index) => <th onClick={ () => this.onSort(index) }>{ column.text }</th>) }
                         </tr>
                     </thead>
                     <tbody>
-                        { keys.map((key, index) => {
-                            let user = users[key], score = user.score < 0 ? 'n/a' : user.score, rank = user.score < 0 ? 'n/a' : index + 1
-                            const vote = user.completed ? 'Yes' : 'No'
-                            return (<tr onClick={ () => this.onShowUserBets(key) }><td>{ key }</td><td>{ vote }</td><td>{ score }</td><td>{ rank }</td></tr>)
-                        })}
+                        { this.genrateResultsRows(users) }
                     </tbody>
                 </table>
             </div>
         )
     }
 
+    onSort(index) {
+        if (index === this.state.sortIndex) {
+            this.setState({ sortAscending: !this.state.sortAscending })
+        } else {
+            this.setState({ sortAscending: false, sortIndex: index })
+        }
+    }
+
+    genrateResultsRows(users) {
+
+        const keys = this._sort(users, this.state.sortIndex, this.state.sortAscending)
+        const ranking = this._sort(users, 3, false)
+
+        return keys.map((key, userIndex) => {
+            return (
+                <tr onClick={ () => this.onShowUserBets(key) }>
+                    { this.columns.map((column, index) => {
+                        let value =  this._getColumnValue(users, key, index)
+                        if (column.id === 'score' && value < 0) {
+                            value = 'n/a'
+                        } else if (column.id === 'rank') {
+                            value = value < 0 ? 'n/a' : ranking.indexOf(key) + 1
+                        } else if (column.id === 'vote') {
+                            value = value ? 'Yes' : 'No'
+                        }
+
+                        return <td>{ value }</td>
+                    })}
+                </tr>
+                )
+            }
+        )
+    }
+
+    _sort(users, sortIndex, ascending) {
+        return Object.keys(users).sort((a, b) => {
+            const va = this._getColumnValue(users, a, sortIndex)
+            const vb = this._getColumnValue(users, b, sortIndex)
+            const diff = this.columns[sortIndex].type === 'string' ? va.localeCompare(vb) : va - vb
+            return ascending ? diff : -diff
+        })
+    }
+
+    _getColumnValue(users, key, columnIndex) {
+        const user = users[key]
+        switch (columnIndex) {
+            case 0: return key
+            case 1: return user.completed
+            default: return user.completed ? user.score : -1
+        }
+    }
     generateUserBets () {
         if (!this.state.users) {
             return null
