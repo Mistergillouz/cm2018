@@ -16,7 +16,7 @@ export default class FinaleGroups extends React.Component {
             Constants.BETS.FINALE
         ]
 
-        if (this.props.resultMode) {
+        if (this.props.readOnly) {
             groups.push(Constants.BETS.WINNER)
         }
 
@@ -26,7 +26,7 @@ export default class FinaleGroups extends React.Component {
                     selectionCount={ group.selectionCount }
                     teams={ this.props.finales[group.key] } 
                     selection={ this.props.bets[group.key] } 
-                    resultMode={ this.props.resultMode }
+                    readOnly={ this.props.readOnly }
                     onSelectionChanged={ selection => this.onTeamClicked(group, selection) }/>) 
                 }
             </div>

@@ -58,7 +58,7 @@ export default class StatsPage extends React.Component {
     }
 
     generateRow(country, text, selected) {
-        return <Team id={ country } selected={ selected } customText={ text } onItemClicked={ () => this.onTeamClick() }/>
+        return <Team id={ country } readOnly={ true } selected={ selected } customText={ text } onItemClicked={ () => this.onTeamClick() }/>
     }
 
     onTeamClick() {

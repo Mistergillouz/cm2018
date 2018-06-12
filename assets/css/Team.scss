@@ -3,12 +3,16 @@
     align-items: center;
     font-size: 1rem;
     background-color: #f8f8f8;
-    cursor: pointer;
+    
+    &.cmTeamEnabled {
+        cursor: pointer;
+    }
+    
+    &.cmTeamGrayed {
+        opacity: 0.5;
+    }
 }
 
-.cmTeamGrayed {
-    opacity: 0.5;
-}
 
 .cmTeamTitle {
     background-color: #0b5b76;

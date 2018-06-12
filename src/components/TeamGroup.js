@@ -12,9 +12,9 @@ export default class TeamGroup extends React.Component {
     }
     render () {
 
-        const warningVisible = (this.state.selection.length !== this.props.selectionCount) && !this.props.resultMode
+        const warningVisible = (this.state.selection.length !== this.props.selectionCount) && !this.props.readOnly
         return (
-            <div className={ this.props.resultMode ? 'cmTeamGroupResult' : 'cmTeamGroup' }>
+            <div className={ this.props.readOnly ? 'cmTeamGroupResult' : 'cmTeamGroup' }>
                 <div className='cmTeamGroupTitle'>
                     { this.props.title }
                     { warningVisible ? <i className="fas fa-exclamation-triangle cmTeamWarningIcon" title="Tous les matchs de ce groupe n'ont pas ete saisis"></i> : null }
@@ -26,12 +26,12 @@ export default class TeamGroup extends React.Component {
 
     generateTeam (id) {
         const selected = this.state.selection.indexOf(id) !== -1
-        return <Team id={ id } selected={ selected } onItemClicked={ (e) => this.onTeamClicked(id) }/>
+        return <Team id={ id } selected={ selected } readOnly={ this.props.readOnly } onItemClicked={ (e) => this.onTeamClicked(id) }/>
     }
 
     onTeamClicked (id) {
 
-        if (this.props.resultMode) {
+        if (this.props.readOnly) {
             return
         }
 

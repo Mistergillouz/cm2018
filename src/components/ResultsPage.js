@@ -129,7 +129,7 @@ export default class ResultsPage extends React.Component {
         return (
             <div className="cmRankingTableContainer">
                 <div className='cmRankingHeader'>{ 'Paris de ' + this.state.currentUser }</div>
-                <FinaleGroups finales={ bets } bets={ results } resultMode={ true }/>
+                <FinaleGroups finales={ bets } bets={ results } readOnly={ true }/>
             </div>
         )
     }
