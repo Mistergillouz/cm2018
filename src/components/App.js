@@ -67,6 +67,10 @@ export default class App extends React.Component {
     }
 
     getDefaultPage () {
+        if (!this.state.isLogged) {
+            return App.PAGES.LOGIN
+        }
+        
         return GameHelper.isSubmitAllowed() ? App.PAGES.BETS : App.PAGES.RESULTS
     }
 }

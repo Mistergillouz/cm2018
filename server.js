@@ -46,14 +46,16 @@ app.get('/results', function (req, res) {
             completed = Object.keys(PHASES).every(phase => {
                 return Array.isArray(bets[phase]) && bets[phase].length == PHASES[phase].count
             })
-            score = Object.keys(PHASES).reduce((currentScore, phase) => {
-                let phaseScore = 0
-                if (Array.isArray(results[phase]) && Array.isArray(bets[phase])) {
-                    phaseScore = results[phase].reduce((acc, countryId) => bets[phase].indexOf(countryId) === -1 ? acc : acc + PHASES[phase].points, 0)
-                }
-                return currentScore + phaseScore
-            }, 0)
 
+            if (results) {
+                score = Object.keys(PHASES).reduce((currentScore, phase) => {
+                    let phaseScore = 0
+                    if (Array.isArray(results[phase]) && Array.isArray(bets[phase])) {
+                        phaseScore = results[phase].reduce((acc, countryId) => bets[phase].indexOf(countryId) === -1 ? acc : acc + PHASES[phase].points, 0)
+                    }
+                    return currentScore + phaseScore
+                }, 0)
+            }
         }
         
         userResults[user] = { user, bets, completed, score }

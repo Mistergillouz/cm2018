@@ -17,7 +17,7 @@ export default class ResultsPage extends React.Component {
 
         GameHelper.loadResults().then(requestData => this.setState({ 
             users: requestData.data.users,
-            results: requestData.data.results
+            results: requestData.data.results || {}
         }))
     }
 
@@ -62,7 +62,7 @@ export default class ResultsPage extends React.Component {
     }
 
     generateUserBets () {
-        if (!this.state.currentUser || !this.state.results) {
+        if (!this.state.users) {
             return null
         }
 

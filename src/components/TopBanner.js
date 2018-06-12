@@ -16,7 +16,7 @@ export default class TopBanner extends React.Component {
                 </div>
                 <div className="cmResultMenu">
                     <span onClick={ (e) => this.onShowResult() }>RESULTATS</span>
-                    <span onClick={ (e) => this.onShowStat() }>STATS</span>
+                    {/* <span onClick={ (e) => this.onShowStat() }>STATS</span> */}
                 </div>
             </div>
         )
