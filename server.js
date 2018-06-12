@@ -14,15 +14,6 @@ app.use(bodyParser.json());
 const DATA_FILE = 'serverdatas.json'
 let serverDatas = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))
 
-const PHASES = {
-    QUALIF: { count: 16, points: 1 },
-    HUITIEME: { count: 8, points: 2 },
-    QUART: { count: 4, points: 4 },
-    DEMI: { count: 2, points: 8 },
-    FINALE: { count: 1, points: 16 },
-    WINNER: { count: 1, points: 32 }
-}
-
 app.get('/users', function (req, res) {
     let users = Object.keys(serverDatas.users)
     res.end(JSON.stringify(users))
@@ -34,7 +25,14 @@ app.get('/bets', function (req, res) {
 
 app.get('/results', function (req, res) {
     
-    
+    const userPhases = {
+        QUALIF: { count: 16, points: 1 },
+        HUITIEME: { count: 8, points: 2 },
+        QUART: { count: 4, points: 4 },
+        DEMI: { count: 2, points: 8 },
+        FINALE: { count: 1, points: 16 }
+    }
+
     let userResults = {}
     const results = serverDatas.results
     getUsers().forEach(user => {
@@ -43,15 +41,15 @@ app.get('/results', function (req, res) {
 
         const bets = getUserBets(user)
         if (bets) {
-            completed = Object.keys(PHASES).every(phase => {
-                return Array.isArray(bets[phase]) && bets[phase].length == PHASES[phase].count
+            completed = Object.keys(userPhases).every(phase => {
+                return Array.isArray(bets[phase]) && bets[phase].length == userPhases[phase].count
             })
 
             if (results) {
-                score = Object.keys(PHASES).reduce((currentScore, phase) => {
+                score = Object.keys(userPhases).reduce((currentScore, phase) => {
                     let phaseScore = 0
                     if (Array.isArray(results[phase]) && Array.isArray(bets[phase])) {
-                        phaseScore = results[phase].reduce((acc, countryId) => bets[phase].indexOf(countryId) === -1 ? acc : acc + PHASES[phase].points, 0)
+                        phaseScore = results[phase].reduce((acc, countryId) => bets[phase].indexOf(countryId) === -1 ? acc : acc + userPhases[phase].points, 0)
                     }
                     return currentScore + phaseScore
                 }, 0)
@@ -144,7 +142,7 @@ function writeServerDatas () {
 }
 
 function getUsers () {
-    return Object.keys(serverDatas.users)
+    return Object.keys(serverDatas.users).sort()
 }
 
 function getUserBets (userName) {

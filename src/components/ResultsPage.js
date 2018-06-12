@@ -46,6 +46,7 @@ export default class ResultsPage extends React.Component {
                     <thead>
                         <tr>
                             <th>Nom</th>
+                            <th>Vote</th>
                             <th>Points</th>
                             <th>Rank</th>
                         </tr>
@@ -53,7 +54,8 @@ export default class ResultsPage extends React.Component {
                     <tbody>
                         { keys.map((key, index) => {
                             let user = users[key], score = user.score < 0 ? 'n/a' : user.score, rank = user.score < 0 ? 'n/a' : index + 1
-                            return (<tr onClick={ () => this.onShowUserBets(key) }><td>{ key }</td><td>{ score }</td><td>{ rank }</td></tr>)
+                            const vote = user.completed ? 'Yes' : 'No'
+                            return (<tr onClick={ () => this.onShowUserBets(key) }><td>{ key }</td><td>{ vote }</td><td>{ score }</td><td>{ rank }</td></tr>)
                         })}
                     </tbody>
                 </table>
