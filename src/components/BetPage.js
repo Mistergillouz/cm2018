@@ -61,7 +61,7 @@ export default class BetPage extends React.Component {
 
     
     onSubmit () {
-        GameHelper.submitBets().then(result => console.log('Submit: ok')).catch(error => {
+        GameHelper.submitBets().then(result => alert('Les paris ont bien ete enregistrés')).catch(error => {
             alert(error.response.statusText + '\n' + error.response.data)
         })
     }
