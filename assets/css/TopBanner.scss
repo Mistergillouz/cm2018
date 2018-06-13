@@ -37,5 +37,17 @@
 
     span {
         margin-right: 1rem;
+        border-radius: 1rem;
+        padding: 0.2rem 1rem 0.2rem 1rem;
+        background-color: white;
+        color: black;
+    }
+
+    span:hover {
+        background-color: lightgray;
+    }
+
+    span i {
+        margin-right: 0.25rem; 
     }
 }

@@ -37,7 +37,7 @@ export default class StatsPage extends React.Component {
             return null
         }
 
-        const statData = statDatas.stats[statKey], results = statDatas.results
+        const statData = statDatas.stats[statKey], results = statDatas.results || {}
         const phaseKeys = Object.keys(Constants.BETS)
         return (
             <div className="cmStatTables">
