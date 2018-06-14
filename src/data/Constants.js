@@ -55,7 +55,9 @@ const Constants = {
         'SEN': 'Sénégal',
         'JAP': 'Japon',
         'SER': 'Serbie'
-    }
+    },
+    PAGES: { 'LOGIN': 'login', RESULTS: 'results', BETS: 'Bets', STATS: 'Stats' }
+
 }
 
 export default Constants
