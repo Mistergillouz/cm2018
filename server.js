@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 const DATA_FILE = 'serverdatas.json'
+const END_DATE_TIME = new Date(2018, 5, 14, 17, 0, 0)
+
 let serverDatas = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))
 
 app.get('/users', function (req, res) {
@@ -62,8 +64,7 @@ app.get('/results', function (req, res) {
     res.end(JSON.stringify({ users: userResults, results, stats: getStats() }))
 })
 
-function getStats() {
-    const matchResults = serverDatas.results
+function getStats () {
     
     const phases = [ 'QUALIF' , 'HUITIEME', 'QUART', 'DEMI', 'FINALE', 'WINNER' ]
     
@@ -97,7 +98,7 @@ app.get('/logon/:user', function (req, res) {
     if (user) {
         let result = {
             bets: user.bets || {},
-            readOnly: serverDatas.readOnly,
+            readOnly: !isBetAllowed(),
             qualification: serverDatas.qualification
         }
         res.end(JSON.stringify(result))
@@ -108,7 +109,7 @@ app.get('/logon/:user', function (req, res) {
 
 app.post('/bets/:user', function (req, res) {
 
-    if (serverDatas.readOnly) {
+    if (!isBetAllowed()) {
         res.status(500).send('Update are now disabled')
         return
     }
@@ -147,4 +148,13 @@ function getUsers () {
 
 function getUserBets (userName) {
     return serverDatas.users[userName].bets
+}
+
+function isBetAllowed () {
+
+    if (!serverDatas.readOnly) {
+        return Date.now() < END_DATE_TIME.getTime()
+    }
+
+    return false
 }

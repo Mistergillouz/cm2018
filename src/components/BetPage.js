@@ -27,7 +27,11 @@ export default class BetPage extends React.Component {
                     <span className="cmGroupSeparator"><i className="fas fa-futbol"></i>Qualification</span>
                     <Poules bets={ GameHelper.getGroupBets() } onGroupSelectionChanged={ selection => this.onGroupSelectionChanged(selection) }/>
                     <span className="cmGroupSeparator"><i className="fas fa-futbol"></i>Finales</span>
-                    <FinaleGroups finales={ this.state.finales } bets={ bets } onFinaleSelectionChanged={ (finale, selection) => this.onFinaleSelectionChanged(finale, selection)} />
+                    <FinaleGroups 
+                        finales={ this.state.finales } 
+                        bets={ bets }
+                        readOnly={ !GameHelper.isSubmitAllowed() }
+                        onFinaleSelectionChanged={ (finale, selection) => this.onFinaleSelectionChanged(finale, selection)} />
                 </div>
             </div>
         )
