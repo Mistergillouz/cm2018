@@ -12,17 +12,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 const DATA_FILE = 'serverdatas.json'
-const END_DATE_TIME = new Date(2018, 5, 14, 17, 0, 0)
-
-let serverDatas = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))
+const END_DATE_TIME = new Date(2018, 5, 14, 17, 30, 0)
+const DATAS = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))
 
 app.get('/users', function (req, res) {
-    let users = Object.keys(serverDatas.users)
+    let users = Object.keys(DATAS.users)
     res.end(JSON.stringify(users))
 })
 
 app.get('/bets', function (req, res) {
-    res.end(JSON.stringify(serverDatas.users))
+    res.end(JSON.stringify(DATAS.users))
 })
 
 app.get('/results', function (req, res) {
@@ -36,7 +35,7 @@ app.get('/results', function (req, res) {
     }
 
     let userResults = {}
-    const results = serverDatas.results
+    const results = DATAS.results
     getUsers().forEach(user => {
 
         let completed = false, score = -1
@@ -94,12 +93,12 @@ function getStats () {
 }
 
 app.get('/logon/:user', function (req, res) {
-    const user = serverDatas.users[req.params.user]
+    const user = DATAS.users[req.params.user]
     if (user) {
         let result = {
             bets: user.bets || {},
             readOnly: !isBetAllowed(),
-            qualification: serverDatas.qualification
+            qualification: DATAS.qualification
         }
         res.end(JSON.stringify(result))
     } else {
@@ -114,7 +113,7 @@ app.post('/bets/:user', function (req, res) {
         return
     }
 
-    let user = serverDatas.users[req.params.user]
+    let user = DATAS.users[req.params.user]
     if (!user) {
         res.sendStatus(404)
         return
@@ -129,7 +128,7 @@ app.post('/bets/:user', function (req, res) {
     user.date = new Date().toISOString()
     
     res.sendStatus(200)
-    writeServerDatas()
+    writeDATAS()
 })
 
 var server = app.listen(9000, function () {
@@ -138,21 +137,21 @@ var server = app.listen(9000, function () {
     console.log('listening on http://'+host+':'+port+'/');
 });
 
-function writeServerDatas () {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(serverDatas))
+function writeDATAS () {
+    fs.writeFileSync(DATA_FILE, JSON.stringify(DATAS))
 }
 
 function getUsers () {
-    return Object.keys(serverDatas.users).sort()
+    return Object.keys(DATAS.users).sort()
 }
 
 function getUserBets (userName) {
-    return serverDatas.users[userName].bets
+    return DATAS.users[userName].bets
 }
 
 function isBetAllowed () {
 
-    if (!serverDatas.readOnly) {
+    if (!DATAS.readOnly) {
         return Date.now() < END_DATE_TIME.getTime()
     }
 
