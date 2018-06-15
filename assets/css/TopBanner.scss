@@ -1,8 +1,72 @@
+
+$breakWidth: 600px;
+  
 .cmTopBanner {
+
     position: relative;
-    background-color: #f4f4f4;
-    width: 100%;
-    border-bottom: 1px solid lightgray;
+    overflow: hidden;
+    background-color: #333;
+    
+    .cmResultMenu {
+
+        display: flex;
+        flex-direction: row;
+
+        a {
+            color: #f2f2f2;
+            text-align: center;
+            padding: 0.75rem 0.75rem;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            
+           &.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            &.cmSandwitch {
+                display: none;
+            }
+        }
+          
+        a:hover {
+            box-shadow: inset 0px -3px 0px 0px lightblue;
+        }
+
+        @media screen and (max-width: $breakWidth) {
+            
+            a {
+                display: none;
+                
+                &.cmSandwitch {
+                    display: block;
+                }
+            }
+
+            &.responsive {
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+                align-items: start;
+
+                a {
+                    display: block;
+                    text-align: start;
+                    width: calc(100% / 2)
+                }
+            }
+        }
+    }
+    
+    .cmUserInfo {
+        position: absolute;
+        right: 0;
+        top: 0.75rem;
+        color: white;
+        padding-right: 0.5rem;
+        cursor: pointer;
+    }
 }
 
 .cmTopBannerTitle {
@@ -13,41 +77,10 @@
     line-height: 2rem;
 }
 
-.cmUserInfo {
-    cursor: pointer;
-    position: absolute;
-    right: 0.5rem;
-    top: 25%;
-}
 
 .cmLoginIcon {
     padding-right: 0.25rem;
 }
 
 .cmUserName {
-}
-
-.cmResultMenu {
-    float: left;
-    position: absolute;
-    top: 25%;
-    padding-left: 0.25rem;
-    cursor: pointer;
-    color: red;
-
-    span {
-        margin-right: 1rem;
-        border-radius: 1rem;
-        padding: 0.2rem 1rem 0.2rem 1rem;
-        background-color: white;
-        color: black;
-    }
-
-    span:hover {
-        background-color: lightgray;
-    }
-
-    span i {
-        margin-right: 0.25rem; 
-    }
 }

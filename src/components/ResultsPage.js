@@ -18,8 +18,8 @@ export default class ResultsPage extends React.Component {
         ]
 
         this.state = {
-            sortIndex: 0,
-            sortAscending: true,
+            sortIndex: ResultsPage.SCORE_COL_INDEX,
+            sortAscending: false,
             results: null,
             currentUser: GameHelper.getUserName()
         }
@@ -35,7 +35,7 @@ export default class ResultsPage extends React.Component {
             <div className='cmResultsPage'>
                 <div className='cmRankingTableContainer'>
                     <div className='cmRankingHeader'>RESULTATS</div>
-                    { this.generateRankingTable(this.state.users) }
+                    { this.generateRankingTable() }
                 </div>
                 { this.generateUserBets() }
             </div>
@@ -43,7 +43,7 @@ export default class ResultsPage extends React.Component {
     }
 
     generateRankingTable (users) {
-        if (!users) {
+        if (!this.state.users) {
             return null
         }
 
@@ -56,7 +56,7 @@ export default class ResultsPage extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.genrateResultsRows(users) }
+                        { this.genrateResultsRows() }
                     </tbody>
                 </table>
             </div>
@@ -71,20 +71,19 @@ export default class ResultsPage extends React.Component {
         }
     }
 
-    genrateResultsRows(users) {
+    genrateResultsRows() {
 
-        const keys = this._sort(users, this.state.sortIndex, this.state.sortAscending)
-        const ranking = this._sort(users, 3, false)
-
-        return keys.map((key, userIndex) => {
+        const ranking = this.getRanking()
+        const keys = this._sort(this.state.sortIndex, this.state.sortAscending)
+        return keys.map(key => {
             return (
                 <tr onClick={ () => this.onShowUserBets(key) }>
                     { this.columns.map((column, index) => {
-                        let value =  this._getColumnValue(users, key, index)
+                        let value =  this._getColumnValue(key, index)
                         if (column.id === 'score' && value < 0) {
                             value = 'n/a'
                         } else if (column.id === 'rank') {
-                            value = value < 0 ? 'n/a' : ranking.indexOf(key) + 1
+                            value = value < 0 ? 'n/a' : ranking[key]
                         } else if (column.id === 'vote') {
                             value = value ? 'Yes' : 'No'
                         }
@@ -97,19 +96,36 @@ export default class ResultsPage extends React.Component {
         )
     }
 
-    _sort(users, sortIndex, ascending) {
-        return Object.keys(users).sort((a, b) => {
-            const va = this._getColumnValue(users, a, sortIndex)
-            const vb = this._getColumnValue(users, b, sortIndex)
+    getRanking() {
+        const ranking = {}
+        let rank = 0, previous = -1
+        const scores = this._sort(ResultsPage.SCORE_COL_INDEX, false)
+        scores.forEach(user => {
+            const current = this._getColumnValue(user, ResultsPage.SCORE_COL_INDEX)
+            if (previous !== current) {
+                previous = current
+                rank++
+            }
+
+            ranking[user] = rank
+        })
+
+        return ranking
+    }
+
+    _sort(sortIndex, ascending) {
+        return Object.keys(this.state.users).sort((a, b) => {
+            const va = this._getColumnValue(a, sortIndex)
+            const vb = this._getColumnValue(b, sortIndex)
             const diff = this.columns[sortIndex].type === 'string' ? va.localeCompare(vb) : va - vb
             return ascending ? diff : -diff
         })
     }
 
-    _getColumnValue(users, key, columnIndex) {
-        const user = users[key]
+    _getColumnValue(userId, columnIndex) {
+        const user = this.state.users[userId]
         switch (columnIndex) {
-            case 0: return key
+            case 0: return userId
             case 1: return user.completed
             default: return user.completed ? user.score : -1
         }
@@ -120,7 +136,7 @@ export default class ResultsPage extends React.Component {
         }
 
         const userBets = this.state.users[this.state.currentUser].bets || {}
-        const keys = Object.keys(Constants.BETS), bets = {}, results = {}
+        const keys = Object.keys(Constants.PHASES), bets = {}, results = {}
         for (let i = 0; i < keys.length - 1; i++) {
             bets[keys[i + 1]] = userBets[keys[i]] || []
             results[keys[i + 1]] = this.state.results[keys[i]]
@@ -140,5 +156,4 @@ export default class ResultsPage extends React.Component {
 
 }
 
-
-
+ResultsPage.SCORE_COL_INDEX = 2

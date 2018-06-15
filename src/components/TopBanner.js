@@ -7,31 +7,42 @@ import Constants from '../data/Constants';
 export default class TopBanner extends React.Component {
 
     render () {
-        const userNameText = this.props.userName ?  this.props.userName : 'Not logged'
+        const userName = this.props.userName ?  this.props.userName : 'Not logged'
         const buttons = [
             { text: 'MES VOTES', page: Constants.PAGES.BETS },
             { text: 'RESULTATS', page: Constants.PAGES.RESULTS },
             { text: 'STATS', page: Constants.PAGES.STATS }
         ]
+
+        // Po po po!
+        if (['Gillouz', 'ColClark'].indexOf(userName) !== -1) {
+            buttons.push({ text: 'ADMIN', page: Constants.PAGES.ENTER_RESULTS })
+        }
+        
         return (
             <div className='cmTopBanner'>
-                <span className='cmTopBannerTitle'>Coupe du monde 2018</span>
+                <div className="cmResultMenu" ref="cmResultMenu">
+                    <a href="javascript:void(0);" class="cmSandwitch" onClick={ () => this.onTogglePopupMenu() }>
+                        <i class="fas fa-bars"></i>
+                    </a>
+                    { buttons.map(button => <a className={ button.page === this.props.activePage ? 'active' : '' } onClick={ () => this.onShowPage(button.page) }>{ button.text }</a>) }
+                </div>
                 <div className='cmUserInfo'  onClick={ (e) => this.onShowPage(Constants.PAGES.LOGIN) }>
                     <i className='far fa-user cmLoginIcon'></i>
-                    <span className='cmUserName'>{ userNameText }</span>
+                    <span className='cmUserName'>{ userName }</span>
                 </div>
-                <div className="cmResultMenu">
-                    { buttons.map(button => <span onClick={ () => this.onShowPage(button.page) }>{ this._eye(button.page) }{ button.text }</span>) }
-                </div>
+                
             </div>
         )
     }
 
-    _eye(page) {
-        return page === this.props.activePage ? <i className="far fa-eye"></i> : null
+    onTogglePopupMenu() {
+        const item = this.refs.cmResultMenu
+        item.classList.toggle('responsive')
     }
 
     onShowPage (page) {
+        this.refs.cmResultMenu.classList.remove('responsive')
         this.props.onShowPage(page)
     }
 }

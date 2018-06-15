@@ -2,7 +2,7 @@
 
 const Constants = {
     
-    BETS: {
+    PHASES: {
         QUALIF: { key: 'QUALIF', title: 'Qualification', selectionCount: 16 },
         HUITIEME: { key: 'HUITIEME', title: 'Huitième', selectionCount: 8, finale: true },
         QUART: { key: 'QUART', title: 'Quart', selectionCount: 4, finale: true },
@@ -56,7 +56,7 @@ const Constants = {
         'JAP': 'Japon',
         'SER': 'Serbie'
     },
-    PAGES: { 'LOGIN': 'login', RESULTS: 'results', BETS: 'Bets', STATS: 'Stats' }
+    PAGES: { 'LOGIN': 'login', RESULTS: 'results', BETS: 'Bets', STATS: 'Stats', ENTER_RESULTS: 'Enter Results' }
 
 }
 

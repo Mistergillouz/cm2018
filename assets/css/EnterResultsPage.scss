@@ -1,0 +1,44 @@
+@import 'BetPage.scss';
+
+.cmEnterResultsPage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.cmEnterResultsTextBanner {
+    @extend .cmGroupSeparator;
+    border-radius: unset;
+}
+
+.cmEnterResultsTitle {
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cmEnterResultsPhases {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.cmEnterResultsPhase {
+    display: flex;
+    flex-direction: column;
+
+    select {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+        border-radius: 5px;
+        border-color: lightgray;
+        padding: 0.15rem;
+    }
+}
+
+.cmEnterResultPhaseName {
+    text-align: center;
+    color: #1b30ab;
+}

@@ -38,14 +38,14 @@ export default class StatsPage extends React.Component {
         }
 
         const statData = statDatas.stats[statKey], results = statDatas.results || {}
-        const phaseKeys = Object.keys(Constants.BETS)
+        const phaseKeys = Object.keys(Constants.PHASES)
         return (
             <div className="cmStatTables">
                 { Object.keys(statData).map((phase, index) => {
                     const stats = statData[phase], phaseResults = results[phaseKeys[index]] || []
                     const keys = Object.keys(stats).sort((a, b) => stats[b].length - stats[a].length)
                     return (
-                        <div className="cmStatTable"><span className="cmStatHeader">{ Constants.BETS[phase].title }</span>
+                        <div className="cmStatTable"><span className="cmStatHeader">{ Constants.PHASES[phase].title }</span>
                             <div className="cmStatRows">
                                  { keys.map(country => this.generateRow(country, stats[country].length, phaseResults.indexOf(country) !== -1)) }
                             </div>

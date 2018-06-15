@@ -59,7 +59,7 @@ export default class BetPage extends React.Component {
     }
 
     onGroupSelectionChanged (selection) {
-        GameHelper.setBet(Constants.BETS.QUALIF, selection)
+        GameHelper.setBet(Constants.PHASES.QUALIF, selection)
         this.setState({ finales: GameHelper.getFinaleGroups() })
     }
 

@@ -7,6 +7,7 @@ import LoginPage from './LoginPage'
 import BetPage from './BetPage'
 import ResultsPage from './ResultsPage'
 import StatsPage from './StatsPage'
+import EnterResultsPage from './EnterResultsPage'
 
 import '../../assets/css/app.scss'
 
@@ -56,6 +57,9 @@ export default class App extends React.Component {
             case Constants.PAGES.STATS:
                 return <StatsPage/>
             
+            case Constants.PAGES.ENTER_RESULTS:
+                return <EnterResultsPage/>
+
             default:
                 return null
         }

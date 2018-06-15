@@ -24,6 +24,22 @@ app.get('/bets', function (req, res) {
     res.end(JSON.stringify(DATAS.users))
 })
 
+app.post('/results', function (req, res) {
+    const results = req.body.results
+    if (results) {
+        Object.keys(results).forEach(key => {
+            if (Array.isArray(results[key])) {
+                results[key].sort()
+            }
+        })
+        DATAS.results = results
+        writeDATAS()
+        res.end('OK')
+    } else {
+        res.status(500).send('Failed to update results')
+    }
+})
+
 app.get('/results', function (req, res) {
     
     const userPhases = {

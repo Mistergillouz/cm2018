@@ -10,14 +10,14 @@ export default class FinaleGroups extends React.Component {
     render () {
 
         const groups = [
-            Constants.BETS.HUITIEME,
-            Constants.BETS.QUART,
-            Constants.BETS.DEMI,
-            Constants.BETS.FINALE
+            Constants.PHASES.HUITIEME,
+            Constants.PHASES.QUART,
+            Constants.PHASES.DEMI,
+            Constants.PHASES.FINALE
         ]
 
         if (this.props.readOnly) {
-            groups.push(Constants.BETS.WINNER)
+            groups.push(Constants.PHASES.WINNER)
         }
 
         return (

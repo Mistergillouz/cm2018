@@ -39,14 +39,18 @@ class GameHelper {
         return axios.get(this.baseUrl + '/results')
     }
     
+    submitResults (results) {
+        return axios.post(this.baseUrl + '/results', { results })
+    }
+
     setGroupBet (groupKey, selectedCountries) {
-        this.setBet(Constants.BETS.QUALIF, selectedCountries, groupKey)
+        this.setBet(Constants.PHASES.QUALIF, selectedCountries, groupKey)
     }
 
     
     getGroupBets () {
         let result = {}
-        const bets = this.getBet(Constants.BETS.QUALIF)
+        const bets = this.getBet(Constants.PHASES.QUALIF)
 
         this.getGroups().forEach(groupId => {
             result[groupId] = []
@@ -75,7 +79,7 @@ class GameHelper {
 
     checkBets () {
         // Check if selection is valid else remove invalid entries
-        const phases = Object.values(Constants.BETS)
+        const phases = Object.values(Constants.PHASES)
         for (let i = 0; i < phases.length - 1; i++) {
             const bets0 = this.getBet(phases[i])
             let bets1 = this.getBet(phases[i + 1])
@@ -88,7 +92,7 @@ class GameHelper {
     }
 
     getFinaleGroups () {
-        let groups = {}, bets = Object.values(Constants.BETS)
+        let groups = {}, bets = Object.values(Constants.PHASES)
         bets.forEach((bet, index) => {
             if (index > 0) {
                 groups[bet.key] = this.getBet(bets[index - 1])
@@ -121,7 +125,7 @@ class GameHelper {
     }
 
     isBetsCompleted () {
-        return Object.values(Constants.BETS).every(bet => this.getBet(bet).length === bet.selectionCount)
+        return Object.values(Constants.PHASES).every(bet => this.getBet(bet).length === bet.selectionCount)
     }
 
     submitBets () {
