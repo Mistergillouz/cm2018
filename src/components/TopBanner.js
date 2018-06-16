@@ -27,10 +27,7 @@ export default class TopBanner extends React.Component {
                     </a>
                     { buttons.map(button => <a className={ button.page === this.props.activePage ? 'active' : '' } onClick={ () => this.onShowPage(button.page) }>{ button.text }</a>) }
                 </div>
-                <div className='cmUserInfo'  onClick={ (e) => this.onShowPage(Constants.PAGES.LOGIN) }>
-                    <i className='far fa-user cmLoginIcon'></i>
-                    <span className='cmUserName'>{ userName }</span>
-                </div>
+                <span className='cmUserInfo cmUserName' onClick={ (e) => this.onShowPage(Constants.PAGES.LOGIN) }><i className='far fa-user cmLoginIcon'></i>{ userName }</span>
                 
             </div>
         )

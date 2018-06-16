@@ -3,9 +3,14 @@ $breakWidth: 600px;
   
 .cmTopBanner {
 
-    position: relative;
-    overflow: hidden;
     background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: $breakWidth) {
+        align-items: baseline;
+    }
     
     .cmResultMenu {
 
@@ -44,6 +49,10 @@ $breakWidth: 600px;
                 }
             }
 
+            a:hover {
+                box-shadow: unset;
+            }
+
             &.responsive {
                 display: flex;
                 flex-direction: column;
@@ -53,16 +62,12 @@ $breakWidth: 600px;
                 a {
                     display: block;
                     text-align: start;
-                    width: calc(100% / 2)
                 }
             }
         }
     }
     
     .cmUserInfo {
-        position: absolute;
-        right: 0;
-        top: 0.75rem;
         color: white;
         padding-right: 0.5rem;
         cursor: pointer;
