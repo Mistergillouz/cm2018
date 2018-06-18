@@ -11,24 +11,25 @@
     @extend .cmGroupSeparator;
     border-radius: unset;
     padding: 0.5rem 2rem 0.5rem 2rem;
+    margin-left: 1rem;
+    width: 25%;
 }
 
 .cmEnterResultsTitle {
     padding-bottom: 1rem;
     display: flex;
-    justify-content: space-between;
 }
 
 .cmEnterResultsPhases {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
 .cmEnterResultsPhase {
     display: flex;
     flex-direction: column;
+    margin-right: 1rem;
 
     select {
         margin-top: 0.25rem;

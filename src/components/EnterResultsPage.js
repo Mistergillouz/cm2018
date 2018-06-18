@@ -24,8 +24,8 @@ export default class EnterResultsPage extends React.Component {
         return (
             <div className='cmEnterResultsPage'>
                 <div className="cmEnterResultsTitle">
-                    <span className="cmEnterResultsTextBanner"><i className="fas fa-tasks"></i>Saisie des résultats</span>
                     <button className="cmButton" onClick={ () => this.onSubmit() }>SUBMIT</button>
+                    <span className="cmEnterResultsTextBanner"><i className="fas fa-tasks"></i>Saisie des résultats</span>
                 </div>
                 <div className="cmEnterResultsPhases">
                 { EnterResultsPage.PHASES.map((phase, index) => this.generatePhasePanel(index)) }
