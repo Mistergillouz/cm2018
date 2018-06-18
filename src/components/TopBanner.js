@@ -21,9 +21,9 @@ export default class TopBanner extends React.Component {
         
         return (
             <div className='cmTopBanner'>
-                <div className="cmResultMenu" ref="cmResultMenu">
-                    <a href="javascript:void(0);" class="cmSandwitch" onClick={ () => this.onTogglePopupMenu() }>
-                        <i class="fas fa-bars"></i>
+                <div className="cmResultMenu" ref="cmResultMenu" key="1">
+                    <a href="javascript:void(0);" className="cmSandwitch" onClick={ () => this.onTogglePopupMenu() }>
+                        <i className="fas fa-bars"></i>
                     </a>
                     { buttons.map(button => <a className={ button.page === this.props.activePage ? 'active' : '' } onClick={ () => this.onShowPage(button.page) }>{ button.text }</a>) }
                 </div>
